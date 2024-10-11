@@ -14,7 +14,6 @@ function add_label(page_contents, date, time, analyst, grades, sifter, sample) {
 }
 
 // Constant text for labels
-const label_date = "Date: __/10/2024";
 const label_time = "Time: __:__";
 const label_analyst = "Analyst: ";
 const label_grades = "FM Grade: ☐N/A ☐1 ☐2 ☐3 ☐4<br>SP Grade: ☐A ☐B ☐C ☐D"
@@ -22,9 +21,17 @@ const label_grades = "FM Grade: ☐N/A ☐1 ☐2 ☐3 ☐4<br>SP Grade: ☐A ☐
 //alert("Bazinga!");
 const params = new URLSearchParams(location.search);
 
+// Get params from URL
 const starting_id = parseInt(params.get("startingID"));
 const no_samples = parseInt(params.get("noSamples"));
 const used_labels = parseInt(params.get("usedLabels"));
+let month = params.get("month");
+let year = params.get("year");
+
+// Set date for label
+if (month=="NA") {month="__";}
+if (year=="NA") {year="____";}
+const label_date = "Date: __/"+month+"/"+year;
 
 console.log(no_samples+" samples starting with ID: "+starting_id);
 

@@ -11,8 +11,13 @@ function submit_form(event) {
         used_labels = document.getElementById("usedLabels").value;
     }
 
+    let month = document.getElementById("labelMonth").value;
+    if (month=="") {month = "NA";}
+    let year = document.getElementById("labelYear").value;
+    if (year=="") {year = "NA";}
+
     // Open printing window
-    window.open("printing.html?startingID="+starting_id+"&noSamples="+num_samples+"&usedLabels="+used_labels);
+    window.open("printing.html?startingID="+starting_id+"&noSamples="+num_samples+"&usedLabels="+used_labels+"&month="+month+"&year="+year);
 }
 
 // Function that is called when partialSheet checkbox is toggled
