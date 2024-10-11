@@ -26,10 +26,19 @@ body {
     padding: 4mm 3mm 4mm 3mm;
 }
 
-.labels div {
+.labels div.label {
     border-radius: 4mm;
     border: 4mm white solid;
     background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.labels div.label-content {
+    width: fit-content;
+    height: fit-content;
 }
 
 .labels div section * {
