@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="Stylesheets/main.css">
-    <script src="main.js"></script>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    
-    <form onsubmit="get_form(event)">
-        <h4>First Sample ID:</h4>
+    <h1>Test FM/SP label generator</h1>
+
+    <form onsubmit="submit_form(event)">
+        <h3>Sample ID of first sample:</h3>
         <input type="number" name="startingID" id="startingID", step="1">
 
-        <h4>Number of samples: </h4>
+        <h3>Number of samples: </h3>
         <input type="number" name="noSamples" id="noSamples">
-
+        
         <input type="submit" value="Make Labels!">
+
+        <br>
+        <input type="checkbox" name="partialSheet" id="partialSheet" onchange="partial_sheet_checkbox()">
+        <label for="partialSheet">I have a half-used sheet of lables as the first sheet to be used by the printer</label>
+
+        <h3 class="partialSheetData">Number of used labels on sheet (or label# to start printing on):</h3>
+        <input type="number" name="usedLabels" id="usedLabels", min="0", max="17", step="1", value="0" class="partialSheetData">
+        <h2 class="partialSheetData">Example sheet with numbers for labels:</h2>
+        <img src="./Images/usedLabelsExample.png" alt="" srcset="" class="partialSheetData">
     </form>
+
+    <script src="main.js"></script>
 </body>
 </html>

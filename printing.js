@@ -24,20 +24,65 @@ const params = new URLSearchParams(location.search);
 
 const starting_id = parseInt(params.get("startingID"));
 const no_samples = parseInt(params.get("noSamples"));
+const used_labels = parseInt(params.get("usedLabels"));
 
 console.log(no_samples+" samples starting with ID: "+starting_id);
 
-// Calculate how many full pages + how many extra labels are needed
-let pages = Math.floor(no_samples/18);
-let labels_left = no_samples%18;
-console.log(pages+" full page(s) with "+labels_left+" label(s) left on one last page.");
+let total_labels = no_samples+used_labels;
 
 // Vars to keep track of current sifter number and sample ID
 let sifterNo = 1;
 let sampleID = starting_id;
 
+// If first sheet is partially used generate the labels for it
+let sampleLabelsPrinted = 0;
+if (used_labels > 0) {
+    console.log("Partial Start");
+    let page_contents = '<section class="labels">';
+
+    // Make the blank labels
+    for (let i=0; i<used_labels; i++) {
+        page_contents+='<div class="label"><div class="label-content"></div></div>';
+        sampleLabelsPrinted+=1;
+    }
+
+    // if more spare labels than samples
+    if (18-used_labels > no_samples) {
+        for (let i=0; i<no_samples; i++) {
+            page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, sifterNo, sampleID);
+            sifterNo+=1;
+            sampleID+=1;
+            sampleLabelsPrinted+=1;
+        }
+        // Make the rest of the labels blank
+        for (let i=0; i<(18-used_labels)-no_samples; i++){
+            page_contents+='<div class="label"><div class="label-content"></div></div>';
+            sampleLabelsPrinted+=1;
+        }
+    }
+    else { // otherwise less spare labels than samples left
+        // Make the rest of the labels
+        for (let i=0; i<18-used_labels; i++) {
+            page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, sifterNo, sampleID);
+            sifterNo+=1;
+            sampleID+=1;
+            sampleLabelsPrinted+=1;
+        }
+    }
+
+    // Add labels to page contents
+    page_contents += '</section>';
+    document.getElementById('labels-here').innerHTML += page_contents;
+}
+
+// Calculate how many full pages + how many extra labels are needed
+let pages = Math.floor((no_samples+used_labels-sampleLabelsPrinted)/18);
+let labels_left = (no_samples+used_labels-sampleLabelsPrinted)%18;
+console.log(pages+" full page(s) with "+labels_left+" label(s) left on one last page.");
+
 // Make the full pages of labels
 for (let j=0; j<pages; j++) {
+    console.log("Full Start");
     let page_contents = '<section class="labels">';
     for (let i=0; i<18; i++) {
         page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, sifterNo, sampleID);
@@ -51,6 +96,7 @@ for (let j=0; j<pages; j++) {
 
 // Make the partial page of labels
 if (labels_left > 0) {
+    console.log("Partial End");
     let page_contents = '<section class="labels">';
 
     // Generate labels with text
