@@ -18,12 +18,12 @@ body {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-template-rows: repeat(6, minmax(0, 1fr));
 
-    width: 210mm;
-    height: 297mm;
+    width: 197.5mm;/*210mm;*/
+    height: 279.6mm;/*297mm;*/
 
-    column-gap: 2mm;
+    column-gap: 2.5mm;
 
-    padding: 4mm 3mm 4mm 3mm;
+    padding: 8.7mm 6.25mm 8.7mm 6.25mm;
 }
 
 .labels div.label {
@@ -49,5 +49,5 @@ body {
     padding: 0;
     margin: 1mm 0mm 1mm 0mm;
 
-    font-size: 10pt;
+    font-size: 9.5pt;
 }
