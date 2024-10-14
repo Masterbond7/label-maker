@@ -1,6 +1,9 @@
 function add_label(page_contents, date, time, analyst, grades, sifter, sample) {
     let label_sifterNo = "Sifter #"+sifter.toString();//.padStart(2,'0');
     let label_sampleID = "Sample ID: "+sample;
+
+    // If Sample ID is NaN set to "___..."
+    if (isNaN(sifter)) { sifter = "__________"; }
     
     page_contents += ('<div class="label"><div class="label-content">\
         <h3 class="label-text">'+label_sifterNo+'</h3>\
@@ -25,6 +28,7 @@ const params = new URLSearchParams(location.search);
 const starting_id = parseInt(params.get("startingID"));
 const no_samples = parseInt(params.get("noSamples"));
 const used_labels = parseInt(params.get("usedLabels"));
+if (isNaN(used_labels)) { used_labels = 0; }
 let month = params.get("month");
 let year = params.get("year");
 
