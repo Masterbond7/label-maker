@@ -16,7 +16,7 @@ function add_label(page_contents, date, time, analyst, grades, sifter, sample) {
 // Constant text for labels
 const label_time = "Time: __:__";
 const label_analyst = "Analyst: ";
-const label_grades = "FM Grade: ☐NA ☐1 ☐2 ☐3 ☐4<br>SP Grade: ☐A ☐B ☐C ☐D"
+const label_grades = "FM Grade: ☐1 ☐2 ☐3 ☐4<br>SP Grade: ☐A ☐B ☐C ☐D"
 
 //alert("Bazinga!");
 const params = new URLSearchParams(location.search);
