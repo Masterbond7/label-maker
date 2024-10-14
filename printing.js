@@ -1,6 +1,9 @@
 function add_label(page_contents, date, time, analyst, grades, sifter, sample) {
     // If Sample ID is NaN set to "___..."
-    if (isNaN(sample)) { sample = "__________"; }
+    if (isNaN(sample)) { 
+        sample = "__________";
+        sifter = "___";
+    }
     
     let label_sifterNo = "Sifter #"+sifter.toString();//.padStart(2,'0');
     let label_sampleID = "Sample ID: "+sample;
