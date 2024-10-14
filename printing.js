@@ -3,7 +3,7 @@ function add_label(page_contents, date, time, analyst, grades, sifter, sample) {
     let label_sampleID = "Sample ID: "+sample;
 
     // If Sample ID is NaN set to "___..."
-    if (isNaN(sifter)) { sifter = "__________"; }
+    if (isNaN(sample)) { sample = "__________"; }
     
     page_contents += ('<div class="label"><div class="label-content">\
         <h3 class="label-text">'+label_sifterNo+'</h3>\
