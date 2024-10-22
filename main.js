@@ -11,13 +11,18 @@ function submit_form(event) {
         used_labels = document.getElementById("usedLabels").value;
     }
 
+    let empty_labels = 0;
+    if (document.getElementById("emptyLabels").checked) {
+        empty_labels = 1;
+    }
+
     let month = document.getElementById("labelMonth").value;
     if (month=="") {month = "NA";}
     let year = document.getElementById("labelYear").value;
     if (year=="") {year = "NA";}
 
     // Open printing window
-    window.open("printing.html?startingID="+starting_id+"&noSamples="+num_samples+"&usedLabels="+used_labels+"&month="+month+"&year="+year);
+    window.open("printing.html?startingID="+starting_id+"&noSamples="+num_samples+"&usedLabels="+used_labels+"&month="+month+"&year="+year+"&emptyLabels="+empty_labels);
 }
 
 // Function that is called when partialSheet checkbox is toggled
