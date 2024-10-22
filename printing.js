@@ -57,13 +57,8 @@ if (used_labels > 0) {
 
     // Make the blank labels
     for (let i=0; i<used_labels; i++) {
-        if (empty_labels) {
-            page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, 0, 0, true);
-            sampleLabelsPrinted+=1;
-        } else {
-            page_contents+='<div class="label"><div class="label-content"></div></div>';
-            sampleLabelsPrinted+=1;
-        }
+        page_contents+='<div class="label"><div class="label-content"></div></div>';
+        sampleLabelsPrinted+=1;
     }
 
     // if more spare labels than samples
@@ -76,8 +71,13 @@ if (used_labels > 0) {
         }
         // Make the rest of the labels blank
         for (let i=0; i<(18-used_labels)-no_samples; i++){
-            page_contents+='<div class="label"><div class="label-content"></div></div>';
-            sampleLabelsPrinted+=1;
+            if (empty_labels) {
+                page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, 0, 0, true);
+                sampleLabelsPrinted+=1;
+            } else {
+                page_contents+='<div class="label"><div class="label-content"></div></div>';
+                sampleLabelsPrinted+=1;
+            }
         }
     }
     else { // otherwise less spare labels than samples left
