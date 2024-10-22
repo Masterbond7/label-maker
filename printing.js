@@ -1,6 +1,6 @@
-function add_label(page_contents, date, time, analyst, grades, sifter, sample) {
+function add_label(page_contents, date, time, analyst, grades, sifter, sample, is_empty) {
     // If Sample ID is NaN set to "___..."
-    if (isNaN(sample)) { 
+    if (isNaN(sample) || is_empty) { 
         sample = "__________";
         sifter = "___";
     }
@@ -31,6 +31,7 @@ const params = new URLSearchParams(location.search);
 const starting_id = parseInt(params.get("startingID"));
 const no_samples = parseInt(params.get("noSamples"));
 const used_labels = parseInt(params.get("usedLabels"));
+const empty_labels = parseInt(params.get("emptyLabels"));
 if (isNaN(used_labels)) { used_labels = 0; }
 let month = params.get("month");
 let year = params.get("year");
@@ -63,21 +64,26 @@ if (used_labels > 0) {
     // if more spare labels than samples
     if (18-used_labels > no_samples) {
         for (let i=0; i<no_samples; i++) {
-            page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, sifterNo, sampleID);
+            page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, sifterNo, sampleID, false);
             sifterNo+=1;
             sampleID+=1;
             sampleLabelsPrinted+=1;
         }
         // Make the rest of the labels blank
         for (let i=0; i<(18-used_labels)-no_samples; i++){
-            page_contents+='<div class="label"><div class="label-content"></div></div>';
-            sampleLabelsPrinted+=1;
+            if (empty_labels) {
+                page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, 0, 0, true);
+                sampleLabelsPrinted+=1;
+            } else {
+                page_contents+='<div class="label"><div class="label-content"></div></div>';
+                sampleLabelsPrinted+=1;
+            }
         }
     }
     else { // otherwise less spare labels than samples left
         // Make the rest of the labels
         for (let i=0; i<18-used_labels; i++) {
-            page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, sifterNo, sampleID);
+            page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, sifterNo, sampleID, false);
             sifterNo+=1;
             sampleID+=1;
             sampleLabelsPrinted+=1;
@@ -99,7 +105,7 @@ for (let j=0; j<pages; j++) {
     console.log("Full Start");
     let page_contents = '<section class="labels">';
     for (let i=0; i<18; i++) {
-        page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, sifterNo, sampleID);
+        page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, sifterNo, sampleID, false);
 
         sifterNo+=1;
         sampleID+=1;
@@ -115,15 +121,19 @@ if (labels_left > 0) {
 
     // Generate labels with text
     for (let i=0; i<labels_left; i++) {
-        page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, sifterNo, sampleID);
+        page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, sifterNo, sampleID, false);
 
         sifterNo+=1;
         sampleID+=1;
     }
 
-    // Make the rest of the labels blank
+    // Make the rest of the labels blank or empty
     for (let i=0; i<18-labels_left; i++){
-        page_contents+='<div class="label"><div class="label-content"></div></div>';
+        if (empty_labels) {
+            page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, 0, 0, true);
+        } else {
+            page_contents+='<div class="label"><div class="label-content"></div></div>';
+        }
     }
 
     page_contents += '</section>';
