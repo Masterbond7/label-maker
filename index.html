@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="Stylesheets/main.css">
+    <link rel="stylesheet" href="./Stylesheets/main.css">
 </head>
 <body>
     <h1>Test FM/SP label generator</h1>
@@ -18,6 +18,9 @@
         <h4>If the campaign may run between months/years then leave the respective feilds blank and they will show as __ in the final labels</h4>
         <input type="number" name="labelMonth" id="labelMonth" placeholder="Month", min="1", max="12", step="1">
         <input type="number" name="labelYear" id="labelYear" placeholder="Year", step="1">
+
+        <h3>Number of 'sample blank' labels to generate: </h3>
+        <input type="number" name="sampleBlanks" id="sampleBlanks" min="0" step="1" required>
 
         <br><br>
         <input type="checkbox" name="emptyLabels" id="emptyLabels">
@@ -35,6 +38,6 @@
         <img src="./Images/usedLabelsExample.png" alt="" srcset="" class="partialSheetData">
     </form>
 
-    <script src="main.js"></script>
+    <script src="./Scripts/main.js"></script>
 </body>
 </html>

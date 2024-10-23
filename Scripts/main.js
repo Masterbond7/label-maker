@@ -5,6 +5,7 @@ function submit_form(event) {
     // Get form data
     let starting_id = parseInt(document.getElementById("startingID").value);
     let num_samples = parseInt(document.getElementById("noSamples").value);
+    let sample_blanks = parseInt(document.getElementById("sampleBlanks").value);
 
     let used_labels = 0;
     if (document.getElementById("partialSheet").checked) {
@@ -18,7 +19,7 @@ function submit_form(event) {
 
     // Calculate number of leftover labels
     let num_leftover = 0;
-    num_leftover = 18-((used_labels + num_samples) % 18);
+    num_leftover = 18-((used_labels + num_samples + sample_blanks) % 18);
     if (num_leftover == 18) {
         num_leftover = 0;
     }
@@ -35,7 +36,7 @@ function submit_form(event) {
 
     // Open printing window
     if (print) {
-        window.open("printing.html?startingID="+starting_id+"&noSamples="+num_samples+"&usedLabels="+used_labels+"&month="+month+"&year="+year+"&emptyLabels="+empty_labels);
+        window.open("./Pages/printing.html?startingID="+starting_id+"&noSamples="+num_samples+"&usedLabels="+used_labels+"&month="+month+"&year="+year+"&emptyLabels="+empty_labels+"&sampleBlanks="+sample_blanks);
     }
 }
 
