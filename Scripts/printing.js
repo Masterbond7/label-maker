@@ -21,7 +21,7 @@ function add_label(page_contents, date, time, analyst, grades, sifter, sample, i
 
 function add_sample_blank(page_contents, date, time, analyst, grades) {    
     page_contents += ('<div class="label"><div class="label-content">\
-        <h3 class="label-text">Sample Blank</h3>\
+        <h3 class="label-text">Sample: Blank</h3>\
         <h3 class="label-text">'+date+'</h3>\
         <h3 class="label-text">'+time+'</h3>\
         <h3 class="label-text">'+analyst+'</h3>\
@@ -78,11 +78,13 @@ if (used_labels > 0) {
     if (18-used_labels > sample_blanks_left) {
         for (;0<sample_blanks_left; sample_blanks_left--) {
             page_contents = add_sample_blank(page_contents, label_date, label_time, label_analyst, label_grades);
+            sampleLabelsPrinted+=1;
         }
     } else {
         for (let i=0; i < (18-used_labels); i++) {
             page_contents = add_sample_blank(page_contents, label_date, label_time, label_analyst, label_grades);
             sample_blanks_left--;
+            sampleLabelsPrinted+=1;
         }
     }
 
@@ -121,7 +123,7 @@ if (used_labels > 0) {
 }
 
 // Calculate how many full pages + how many extra labels are needed
-let pages = Math.floor((no_samples+used_labels+sample_blanks-sampleLabelsPrinted)/18);
+let pages = Math.floor((no_samples+used_labels+sample_blanks-sampleLabelsPrinted)/18);console.log(sampleLabelsPrinted);
 let labels_left = (no_samples+used_labels+sample_blanks-sampleLabelsPrinted)%18;
 console.log(pages+" full page(s) with "+labels_left+" label(s) left on one last page.");
 
@@ -129,15 +131,19 @@ console.log(pages+" full page(s) with "+labels_left+" label(s) left on one last 
 for (let j=0; j<pages; j++) {
     console.log("Full Start");
     let page_contents = '<section class="labels">';
+    let blanks_this_page = 0;
     
     // Sample blank labels
     for (let i=0; i<18; i++) {
-        page_contents = add_sample_blank(page_contents, label_date, label_time, label_analyst, label_grades);
-        sample_blanks_left--;
+        if (sample_blanks_left > 0) {
+            page_contents = add_sample_blank(page_contents, label_date, label_time, label_analyst, label_grades);
+            sample_blanks_left--;
+            blanks_this_page++;
+        }
     }
 
     // Sifter labels
-    for (let i=0; i<18-sample_blanks_left; i++) {
+    for (let i=0; i<18-blanks_this_page; i++) {
         page_contents = add_label(page_contents, label_date, label_time, label_analyst, label_grades, sifterNo, sampleID, false);
 
         sifterNo+=1;
