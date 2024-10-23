@@ -25,7 +25,7 @@ function submit_form(event) {
     
     let print = true;
     if (num_leftover > 0 && empty_labels == 1) { // Leftover labels being turned into "spare" labels
-        print = confirm("If you continue "+num_leftover+" \"spare\" label(s) will be generated, are you sure?");
+        print = confirm("If you continue, "+num_leftover+" \"spare\" label(s) will be generated, are you sure?");
     }
 
     let month = document.getElementById("labelMonth").value;
