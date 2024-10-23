@@ -16,6 +16,11 @@ function submit_form(event) {
         empty_labels = 1;
     }
 
+    // Calculate number of leftover labels
+    let num_leftover = 0;
+    num_leftover = 18 - ((used_labels + num_samples) % 18);
+    alert(num_leftover);
+
     let month = document.getElementById("labelMonth").value;
     if (month=="") {month = "NA";}
     let year = document.getElementById("labelYear").value;
