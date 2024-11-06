@@ -12,6 +12,7 @@ function gen_sample_blank(date_text, time_text, analyst_text, grades_text) {
     <h3 class="label-text">'+time_text+'</h3>\
     <h3 class="label-text">'+analyst_text+'</h3>\
     <h3 class="label-text">'+grades_text+'</h3></div></div>';
+    return label_contents;
 }
 
 // Define function to generate sample label
@@ -25,7 +26,7 @@ const no_used_labels = parseInt(params.get("usedLabels"));
 const no_sample_blanks = parseInt(params.get("sampleBlanks"));
 const no_samples = parseInt(params.get("noSamples"));
 const starting_id = parseInt(params.get("startingID"));
-const has_template_labels = Boolean(params.get("emptyLabels"));
+const has_template_labels = Boolean(parseInt(params.get("emptyLabels")));
 let month = params.get("month");
 let year = params.get("year");
 
@@ -40,6 +41,7 @@ const label_grades = "FM Grade: ☐1 ☐2 ☐3 ☐4<br>SP Grade: ☐A ☐B ☐C 
 const label_date = "Date: __/"+month+"/"+year;
 
 // Variables to keep track of labels made
+let made_pages = 0;
 let made_used_labels = 0;
 let made_sample_blanks = 0;
 let made_samples = 0;
@@ -49,7 +51,7 @@ let total_labels = no_used_labels + no_sample_blanks + no_samples;
 let pages_needed = Math.ceil(total_labels/18);
 
 // Make number of needed pages
-while (pages_made < pages_needed) {
+while (made_pages < pages_needed) {
     // Start a new page
     let page_contents = '<section class="labels">';
 
@@ -90,4 +92,5 @@ while (pages_made < pages_needed) {
     // End page and add append to site
     page_contents += '</section>';
     document.getElementById('labels-here').innerHTML += page_contents;
+    made_pages++;
 }
