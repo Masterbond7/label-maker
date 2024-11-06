@@ -16,7 +16,37 @@ function gen_sample_blank(date_text, time_text, analyst_text, grades_text) {
 }
 
 // Define function to generate sample label
+function gen_sample_label(date_text, time_text, analyst_text, grades_text, sifter_no, sample_no) {
+    // If Sample ID is blank/NaN, generate template labels instead
+    if (isNaN(sample_no)) {
+        return gen_template_label(date_text, time_text, analyst_text, grades_text);
+    }
 
+    // Otherwise make sample label normally
+    let label_sifterNo = "Sifter #"+sifter_no.toString();//.padStart(2,'0');
+    let label_sampleID = "Sample ID: "+sample_no;
+
+    let label_contents = '<div class="label"><div class="label-content">\
+    <h3 class="label-text">'+label_sifterNo+'</h3>\
+    <h3 class="label-text">'+label_sampleID+'</h3>\
+    <h3 class="label-text">'+date_text+'</h3>\
+    <h3 class="label-text">'+time_text+'</h3>\
+    <h3 class="label-text">'+analyst_text+'</h3>\
+    <h3 class="label-text">'+grades_text+'</h3></div></div>';
+    return label_contents;
+}
+
+// Define function to generate template label
+function gen_template_label(date_text, time_text, analyst_text, grades_text) {
+    let label_contents = '<div class="label"><div class="label-content">\
+    <h3 class="label-text">Sifter #___</h3>\
+    <h3 class="label-text">Sample ID: __________</h3>\
+    <h3 class="label-text">'+date_text+'</h3>\
+    <h3 class="label-text">'+time_text+'</h3>\
+    <h3 class="label-text">'+analyst_text+'</h3>\
+    <h3 class="label-text">'+grades_text+'</h3></div></div>';
+    return label_contents;
+}
 
 
 
@@ -73,8 +103,7 @@ while (made_pages < pages_needed) {
 
         // If more sample labels are needed
         if (made_samples < no_samples) {
-            //TODO: make sample label
-            page_contents += gen_sample_blank("sample", "sample", "sample", "sample");
+            page_contents += gen_sample_label(label_date, label_time, label_analyst, label_grades, made_samples+1, starting_id+made_samples);
             made_samples++;
             continue; // Jump back to top of loop
         }
@@ -82,8 +111,7 @@ while (made_pages < pages_needed) {
         // If this code has been reached no other labels are needed
         // so generate empty/template labels depending on request
         if (has_template_labels) {
-            //TODO: make template label
-            page_contents += gen_sample_blank("template", "template", "template", "template");
+            page_contents += gen_template_label(label_date, label_time, label_analyst, label_grades);
         } else {
             page_contents += gen_empty_label();
         }
