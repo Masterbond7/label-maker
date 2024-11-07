@@ -34,6 +34,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    padding: 0mm 3mm 0mm 3mm;
 }
 
 .labels div.label-content {
@@ -41,13 +43,36 @@ body {
     height: fit-content;
 }
 
-.labels div section * {
-    display: inline;
+.labels div.reagent-label-content {
+    width: 100%;
+    height: fit-content;
+}
+
+.labels div.reagent-label-content * {
+    font-family: Arial
 }
 
 .label-text {
-    padding: 0;
     margin: 1mm 0mm 1mm 0mm;
+    padding: 0;
+}
 
+.labels div.reagent-label-content .label-text {
+    margin: 0.5mm 0mm 0mm 0mm;
+}
+
+h2.label-text {
+    font-size: 14pt;
+}
+
+h3.label-text {
     font-size: 11pt;
+}
+
+h4.label-text {
+    font-size: 10pt;
+}
+
+h5.label-text {
+    font-size: 7pt;
 }

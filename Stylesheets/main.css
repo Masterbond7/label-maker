@@ -6,8 +6,8 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
-form * {
-    /*margin-bottom: 0;*/
+a {
+    padding-right: 25px;
 }
 
 form input[type="submit"] {

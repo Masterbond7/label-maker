@@ -1,6 +1,6 @@
 // Define function to generate empty label
 function gen_empty_label() {
-    let label_contents = '<div class="label"><div class="label-content"></div></div>'
+    let label_contents = '<div class="label"><div class="label-content"></div></div>';
     return label_contents;
 }
 
