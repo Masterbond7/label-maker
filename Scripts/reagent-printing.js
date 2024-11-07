@@ -23,12 +23,22 @@ const label_date = "Date made: ____________";
 const label_creator = "Made by: ______________";
 const label_expiry = "Expires: _______________";
 
+// Reagent dictionary
+const comm_name = {
+    "ascorbic_solution": "Ascorbic Acid",
+    "dpip_dye": "DPIP dye (for Vit. C)"
+};
+const full_name = {
+    "ascorbic_solution": "L-Ascorbic Acid + Metaphosphoric Acid + Acetic acid + EDTA",
+    "dpip_dye": "2,6-dichlorophenolindophenol sodium salt"
+};
+
 // Start a new page
 let page_contents = '<section class="labels">';
 
 // Make 18 labels
 for (let label_no=0; label_no<18; label_no++) {
-    page_contents += gen_reagent_label(reagent, "Ascorbic Acid", "L-Ascorbic Acid + Metaphosphoric Acid + Acetic acid + EDTA", label_reagent_id, label_time, label_date, label_creator, label_expiry);
+    page_contents += gen_reagent_label(reagent, comm_name[reagent], full_name[reagent], label_reagent_id, label_time, label_date, label_creator, label_expiry);
 }
 
 // End page and add append to site
