@@ -1,14 +1,26 @@
 // Define function to generate empty label
 function gen_reagent_label(pictogram, comm_name, full_name, reagent_id_text, time_text, date_text, creator_text, expiry_text) {
-    let label_contents = '<div class="label"><section style="width:80%;"><div class="reagent-label-content">\
-    <h2 class="label-text">'+comm_name+'</h2>\
-    <h5 class="label-text">'+full_name+'</h5>\
-    <h4 class="label-text">'+reagent_id_text+'</h4>\
-    <h4 class="label-text">'+time_text+'</h4>\
-    <h4 class="label-text">'+date_text+'</h4>\
-    <h4 class="label-text">'+creator_text+'</h4>\
-    <h4 class="label-text">'+expiry_text+'</h4></div></section>\
-    <section style="width:20%;height:90%;"><img src="../Images/Hazards/'+pictogram+'.png" style="max-width:100%; max-height:100%;"></section></div>';
+    let label_contents = "";
+    if (pictogram != "N/A") { // Pictogram
+        label_contents = '<div class="label"><section style="width:80%;"><div class="reagent-label-content">\
+        <h2 class="label-text">'+comm_name+'</h2>\
+        <h5 class="label-text">'+full_name+'</h5>\
+        <h4 class="label-text">'+reagent_id_text+'</h4>\
+        <h4 class="label-text">'+time_text+'</h4>\
+        <h4 class="label-text">'+date_text+'</h4>\
+        <h4 class="label-text">'+creator_text+'</h4>\
+        <h4 class="label-text">'+expiry_text+'</h4></div></section>\
+        <section style="width:20%;height:90%;"><img src="../Images/Hazards/'+pictogram+'" style="max-width:100%; max-height:100%;"></section></div>';
+    } else { // No pictogram
+        label_contents = '<div class="label"><section style="width:100%;"><div class="reagent-label-content">\
+        <h2 class="label-text">'+comm_name+'</h2>\
+        <h5 class="label-text">'+full_name+'</h5>\
+        <h4 class="label-text">'+reagent_id_text+'</h4>\
+        <h4 class="label-text">'+time_text+'</h4>\
+        <h4 class="label-text">'+date_text+'</h4>\
+        <h4 class="label-text">'+creator_text+'</h4>\
+        <h4 class="label-text">'+expiry_text+'</h4></div></section></div>';
+    }
     return label_contents;
 }
 
@@ -24,6 +36,10 @@ const label_creator = "Made by: ______________";
 const label_expiry = "Expires: _______________";
 
 // Reagent dictionary
+const pictogram_dict = {
+    "ascorbic_solution": "ascorbic_acid.png",
+    "dpip_dye": "N/A"
+}
 const comm_name = {
     "ascorbic_solution": "Ascorbic Acid",
     "dpip_dye": "DPIP dye (for Vit. C)"
