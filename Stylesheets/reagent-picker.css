@@ -7,7 +7,7 @@
 }
 
 section.display-grid {
-    display: grid;
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -17,6 +17,7 @@ section.display-grid div {
     border-radius: 10px;
     width: fit-content;
     height: auto;
+    margin: 20px;
 }
 
 section.display-grid div img {

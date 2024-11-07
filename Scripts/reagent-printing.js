@@ -37,7 +37,7 @@ const label_expiry = "Expires: _______________";
 
 // Reagent dictionary
 const pictogram_dict = {
-    "ascorbic_solution": "ascorbic_acid.png",
+    "ascorbic_solution": "ascorbic_solution.png",
     "dpip_dye": "N/A"
 }
 const comm_name = {
@@ -54,7 +54,7 @@ let page_contents = '<section class="labels">';
 
 // Make 18 labels
 for (let label_no=0; label_no<18; label_no++) {
-    page_contents += gen_reagent_label(reagent, comm_name[reagent], full_name[reagent], label_reagent_id, label_time, label_date, label_creator, label_expiry);
+    page_contents += gen_reagent_label(pictogram_dict[reagent], comm_name[reagent], full_name[reagent], label_reagent_id, label_time, label_date, label_creator, label_expiry);
 }
 
 // End page and add append to site
