@@ -7,7 +7,8 @@
 }
 
 section.display-grid {
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
