@@ -19,7 +19,9 @@ function gen_reagent_label(pictogram, comm_name, full_name, reagent_id_text, tim
         <h4 class="label-text">'+time_text+'</h4>\
         <h4 class="label-text">'+date_text+'</h4>\
         <h4 class="label-text">'+creator_text+'</h4>\
-        <h4 class="label-text">'+expiry_text+'</h4></div></section></div>';
+        <h4 class="label-text">'+expiry_text+'</h4>';
+        if (Math.floor(Math.random()*100)) {label_contents+='<h5 class="label-text">best for human consumption - SR</h5>';}
+        label_contents += '</div></section></div>';
     }
     return label_contents;
 }
