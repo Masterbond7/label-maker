@@ -43,7 +43,8 @@ const pictogram_dict = {
     "precipitation_solution": "precipitation_solution.png",
     "extraction_solution": "extraction_solution.png",
     "glycerine_40": "N/A",
-    "n_solvent": "n_solvent.png"
+    "n_solvent": "n_solvent.png",
+    "naoh_0-02m": "naoh_solution.png"
 }
 const comm_name = {
     "ascorbic_solution": "Ascorbic Acid",
@@ -52,7 +53,8 @@ const comm_name = {
     "precipitation_solution": "Precipitation Sol.",
     "extraction_solution": "Extraction Solution",
     "glycerine_40": "40% Glycerine Solution",
-    "n_solvent": "Neutralized Solvent"
+    "n_solvent": "Neutralized Solvent",
+    "naoh_0-02m": "0.02M NaOH Solution"
 };
 const full_name = {
     "ascorbic_solution": "L-Ascorbic Acid + Metaphosphoric Acid + Acetic acid + EDTA",
@@ -61,7 +63,8 @@ const full_name = {
     "precipitation_solution": "Metaphosphoric acid + Acetic acid (glacial)",
     "extraction_solution": "Metaphosphoric Acid + Acetic acid + EDTA",
     "glycerine_40": "Glycerine",
-    "n_solvent": "Diethyl ether + Ethanol + Phenolphthalein + NaOH"
+    "n_solvent": "Diethyl ether + Ethanol + Phenolphthalein + NaOH",
+    "naoh_0-02m": "NaOH"
 };
 
 // Start a new page
