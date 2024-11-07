@@ -38,15 +38,18 @@ const label_expiry = "Expires: _______________";
 // Reagent dictionary
 const pictogram_dict = {
     "ascorbic_solution": "ascorbic_solution.png",
-    "dpip_dye": "N/A"
+    "dpip_dye": "N/A",
+    "chelating_solution": "chelating_solution.png"
 }
 const comm_name = {
     "ascorbic_solution": "Ascorbic Acid",
-    "dpip_dye": "DPIP dye (for Vit. C)"
+    "dpip_dye": "DPIP dye (for Vit. C)",
+    "chelating_solution": "Chelating Solution"
 };
 const full_name = {
     "ascorbic_solution": "L-Ascorbic Acid + Metaphosphoric Acid + Acetic acid + EDTA",
-    "dpip_dye": "2,6-dichlorophenolindophenol sodium salt"
+    "dpip_dye": "2,6-dichlorophenolindophenol sodium salt",
+    "chelating_solution": "Ethylenediaminetetraacetic acid (di-sodium salt dihydrate)"
 };
 
 // Start a new page
