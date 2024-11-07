@@ -46,7 +46,7 @@ const comm_name = {
     "ascorbic_solution": "Ascorbic Acid",
     "dpip_dye": "DPIP dye (for Vit. C)",
     "chelating_solution": "Chelating Solution",
-    "precipitation_solution": "Precipitation Solution"
+    "precipitation_solution": "Precipitation Sol."
 };
 const full_name = {
     "ascorbic_solution": "L-Ascorbic Acid + Metaphosphoric Acid + Acetic acid + EDTA",
