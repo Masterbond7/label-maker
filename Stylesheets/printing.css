@@ -48,9 +48,17 @@ body {
     height: fit-content;
 }
 
+.labels div.reagent-label-content * {
+    font-family: Arial
+}
+
 .label-text {
     margin: 1mm 0mm 1mm 0mm;
     padding: 0;
+}
+
+.labels div.reagent-label-content .label-text {
+    margin: 0.5mm 0mm 0mm 0mm;
 }
 
 h2.label-text {

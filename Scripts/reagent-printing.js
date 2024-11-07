@@ -8,7 +8,7 @@ function gen_reagent_label(pictogram, comm_name, full_name, reagent_id_text, tim
     <h4 class="label-text">'+date_text+'</h4>\
     <h4 class="label-text">'+creator_text+'</h4>\
     <h4 class="label-text">'+expiry_text+'</h4></div></section>\
-    <section style="width:20%;"><img src="../Images/Hazards/'+pictogram+'.png" width="100%"></section></div>';
+    <section style="width:20%;height:90%;"><img src="../Images/Hazards/'+pictogram+'.png" style="max-width:100%; max-height:100%;"></section></div>';
     return label_contents;
 }
 
@@ -17,11 +17,11 @@ const params = new URLSearchParams(location.search);
 const reagent = params.get("reagent");
 
 // Text for labels
-const label_reagent_id = "Reagent ID: R_____";
-const label_time = "Time made: _______";
-const label_date = "Date made: _______";
-const label_creator = "Made by: _________";
-const label_expiry = "Expires: _________";
+const label_reagent_id = "Reagent ID: R___________";
+const label_time = "Time made: ____________";
+const label_date = "Date made: ____________";
+const label_creator = "Made by: ______________";
+const label_expiry = "Expires: _______________";
 
 // Start a new page
 let page_contents = '<section class="labels">';
