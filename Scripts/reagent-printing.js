@@ -41,21 +41,24 @@ const pictogram_dict = {
     "dpip_dye": "N/A",
     "chelating_solution": "chelating_solution.png",
     "precipitation_solution": "precipitation_solution.png",
-    "extraction_solution": "extraction_solution.png"
+    "extraction_solution": "extraction_solution.png",
+    "glycerine_40": "N/A"
 }
 const comm_name = {
     "ascorbic_solution": "Ascorbic Acid",
     "dpip_dye": "DPIP dye (for Vit. C)",
     "chelating_solution": "Chelating Solution",
     "precipitation_solution": "Precipitation Sol.",
-    "extraction_solution": "Extraction Solution"
+    "extraction_solution": "Extraction Solution",
+    "glycerine_40": "40% Glycerine Solution"
 };
 const full_name = {
     "ascorbic_solution": "L-Ascorbic Acid + Metaphosphoric Acid + Acetic acid + EDTA",
     "dpip_dye": "2,6-dichlorophenolindophenol sodium salt",
     "chelating_solution": "Ethylenediaminetetraacetic acid (di-sodium salt dihydrate)",
     "precipitation_solution": "Metaphosphoric acid + Acetic acid (glacial)",
-    "extraction_solution": "Metaphosphoric Acid + Acetic acid + EDTA"
+    "extraction_solution": "Metaphosphoric Acid + Acetic acid + EDTA",
+    "glycerine_40": "Glycerine"
 };
 
 // Start a new page
