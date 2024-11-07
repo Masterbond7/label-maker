@@ -1,5 +1,5 @@
 // Define function to generate empty label
-function gen_reagent_label(pictogram, comm_name, full_name, reagent_id_text, time_text, date_text, creator_text, expiry_text) {
+function gen_reagent_label(pictogram, comm_name, full_name, reagent_id_text, time_text, date_text, creator_text, expiry_text, mg_used_text, reagent) {
     let label_contents = "";
     if (pictogram != "N/A") { // Pictogram
         label_contents = '<div class="label"><section style="width:80%;"><div class="reagent-label-content">\
@@ -9,8 +9,9 @@ function gen_reagent_label(pictogram, comm_name, full_name, reagent_id_text, tim
         <h4 class="label-text">'+time_text+'</h4>\
         <h4 class="label-text">'+date_text+'</h4>\
         <h4 class="label-text">'+creator_text+'</h4>\
-        <h4 class="label-text">'+expiry_text+'</h4></div></section>\
-        <section style="width:20%;height:90%;display:flex;justify-content:center;align-items:center;"><img src="../Images/Hazards/'+pictogram+'" style="max-width:100%; max-height:100%;"></section></div>';
+        <h4 class="label-text">'+expiry_text+'</h4>';
+        if (reagent=="ascorbic_solution") {label_contents+='<h4 class="label-text">'+mg_used_text+'</h4>'}
+        label_contents+='</div></section><section style="width:20%;height:90%;display:flex;justify-content:center;align-items:center;"><img src="../Images/Hazards/'+pictogram+'" style="max-width:100%; max-height:100%;"></section></div>';
     } else { // No pictogram
         label_contents = '<div class="label"><section style="width:100%;"><div class="reagent-label-content">\
         <h2 class="label-text">'+comm_name+'</h2>\
@@ -34,6 +35,7 @@ const label_time = "Time made: ____________";
 const label_date = "Date made: ____________";
 const label_creator = "Made by: ______________";
 const label_expiry = "Expires: _______________";
+const label_mg_used = "mg used: ______________";
 
 // Reagent dictionary
 const pictogram_dict = {
@@ -72,7 +74,7 @@ let page_contents = '<section class="labels">';
 
 // Make 18 labels
 for (let label_no=0; label_no<18; label_no++) {
-    page_contents += gen_reagent_label(pictogram_dict[reagent], comm_name[reagent], full_name[reagent], label_reagent_id, label_time, label_date, label_creator, label_expiry);
+    page_contents += gen_reagent_label(pictogram_dict[reagent], comm_name[reagent], full_name[reagent], label_reagent_id, label_time, label_date, label_creator, label_expiry, label_mg_used, reagent);
 }
 
 // End page and add append to site
