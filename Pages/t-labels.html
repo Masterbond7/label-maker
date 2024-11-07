@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .partialSheetData {
+            visibility: hidden;
+        }
+
+        * {
+            /*font-family: 'Courier New', Courier, monospace;*/
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        /*form * {*/
+            /*margin-bottom: 0;*/
+        /*}*/
+
+        form input[type="submit"] {
+            display: block;
+            margin-top: 18px;
+        }
+
+        form h3 {
+            font-size: 18px;
+            margin-bottom: 0;
+        }
+
+        form h4 {
+            font-size: 12px;
+            margin: 0;
+        }
+    </style>
+    <style>
+        html {
+            background-color: black;
+        }
+
+        body {
+            background-color: lightgrey;
+
+            width: fit-content;
+            height: fit-content;
+
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+
+        .labels {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-rows: repeat(6, minmax(0, 1fr));
+
+            width: 197.5mm;/*210mm;*/
+            height: 279.6mm;/*297mm;*/
+
+            column-gap: 2.5mm;
+
+            padding: 8.7mm 6.25mm 8.7mm 6.25mm;
+        }
+
+        .labels div.label {
+            border-radius: 4mm;
+            border: 1mm white solid;
+            background-color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .labels div.label-content {
+            width: fit-content;
+            height: fit-content;
+        }
+
+        .labels div section * {
+            display: inline;
+        }
+
+        .label-text {
+            padding: 0;
+            margin: 1mm 0mm 1mm 0mm;
+
+            /*font-size: 11pt;*/
+        }
+
+    </style>
+</head>
+<body id="labels-here">
+    <!-- Labels get generated here -->
+    <script>
+        function add_wellmix_set(page_contents, curr_wellmix) {
+            page_contents += '<div class="label"><div class="label-content">\
+                <h1 class="label-text">Wellmix Sample</h1>\
+                <h2 class="label-text">MOR '+curr_wellmix+'</h2></div></div>';
+
+            page_contents += '<div class="label"><div class="label-content">\
+                <h1 class="label-text">Wellmix Sample</h1>\
+                <h2 class="label-text">EOR '+curr_wellmix+'</h2></div></div>';
+
+            return page_contents;
+        }
+
+        function add_packer_label(page_contents, curr_packer, packer_interval) {
+            page_contents += '<div class="label"><div class="label-content">\
+                <h2 class="label-text">Packer Samples</h2>\
+                <h4 class="label-text">for Bulk Density</h4>\
+                <h1 class="label-text">Bag '+(1+packer_interval*(curr_packer-1))+'</h1></div></div>';
+
+            return page_contents;
+        }
+
+        function add_sifter_label(page_contents, curr_sifter) {
+            page_contents += '<div class="label"><div class="label-content">\
+                <h1 class="label-text">Sifter Sample</h1>\
+                <h2 class="label-text">Sifter No. '+curr_sifter+'</h2></div></div>';
+
+            return page_contents;
+        }
+
+        let packer_labels = 25; // 60mt / 25kg / 100
+        let packer_interval = 100;
+        let sifter_labels = 22;
+        let wellmix_label_sets = 2;
+        let labels_needed = packer_labels + sifter_labels + wellmix_label_sets*2;
+
+        let pages = Math.floor(labels_needed / 18); console.log("Pages: " + pages);
+        let labels_left = labels_needed%18; console.log("Spare labels: " + labels_left);
+
+        let curr_wellmix = 1;
+        let curr_packer = 1;
+        let curr_sifter = 1;
+
+        // Full pages of labels
+        for (let j=0; j<pages; j++) {
+            console.log("Full start!");
+            let page_contents = '<section class="labels">';
+
+            for (let i=0; i<18; i++) {
+                if (wellmix_label_sets>0) {
+                    page_contents = add_wellmix_set(page_contents, curr_wellmix);
+                    
+                    curr_wellmix += 1;
+                    wellmix_label_sets -= 1;
+
+                    i++; // two labels made so add extra to i
+
+                    continue;
+                }
+
+                if (packer_labels>0) {
+                    page_contents = add_packer_label(page_contents, curr_packer, packer_interval);
+
+                    curr_packer += 1;
+                    packer_labels -= 1;
+
+                    continue;
+                }
+
+                if (sifter_labels>0) {
+                    page_contents = add_sifter_label(page_contents, curr_sifter);
+
+                    curr_sifter += 1;
+                    sifter_labels -= 1;
+
+                    continue;
+                }
+            }
+
+            page_contents += '</section>';
+            document.getElementById('labels-here').innerHTML += page_contents;
+        }
+
+        // Partial page of labels
+        if (labels_left > 0) {
+            console.log("Full start!");
+            let page_contents = '<section class="labels">';
+            let i = 0;
+
+            while (i<18) {
+                if (wellmix_label_sets>0) {
+                    page_contents = add_wellmix_set(page_contents, curr_wellmix);
+                    
+                    curr_wellmix += 1;
+                    wellmix_label_sets -= 1;
+
+                    i += 2; // two labels made so add 2
+                    continue;
+                }
+                
+                if (packer_labels>0) {
+                    page_contents = add_packer_label(page_contents, curr_packer, packer_interval);
+
+                    curr_packer += 1;
+                    packer_labels -= 1;
+
+                    i += 1;
+                    continue;
+                }
+                
+                if (sifter_labels>0) {
+                    page_contents = add_sifter_label(page_contents, curr_sifter);
+
+                    curr_sifter += 1;
+                    sifter_labels -= 1;
+
+                    i += 1;
+                    continue;
+                }
+
+                // If no other labels to make, add blank.
+                page_contents+='<div class="label"><div class="label-content"></div></div>';
+                i += 1;
+            }
+
+            page_contents += '</section>';
+            document.getElementById('labels-here').innerHTML += page_contents;
+        }
+    </script>
+</body>
+</html>
