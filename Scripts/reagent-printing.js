@@ -10,7 +10,7 @@ function gen_reagent_label(pictogram, comm_name, full_name, reagent_id_text, tim
         <h4 class="label-text">'+date_text+'</h4>\
         <h4 class="label-text">'+creator_text+'</h4>\
         <h4 class="label-text">'+expiry_text+'</h4></div></section>\
-        <section style="width:20%;height:90%;"><img src="../Images/Hazards/'+pictogram+'" style="max-width:100%; max-height:100%;"></section></div>';
+        <section style="width:20%;height:90%;display:flex;justify-content:center;align-items:center;"><img src="../Images/Hazards/'+pictogram+'" style="max-width:100%; max-height:100%;"></section></div>';
     } else { // No pictogram
         label_contents = '<div class="label"><section style="width:100%;"><div class="reagent-label-content">\
         <h2 class="label-text">'+comm_name+'</h2>\
