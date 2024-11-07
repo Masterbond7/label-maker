@@ -15,7 +15,7 @@ section.display-grid {
 section.display-grid div {
     border: 5px gray solid;
     border-radius: 10px;
-    width: 20%;
+    width: fit-content;
     height: auto;
 }
 
