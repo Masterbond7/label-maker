@@ -6,10 +6,6 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
-form * {
-    /*margin-bottom: 0;*/
-}
-
 form input[type="submit"] {
     display: block;
     margin-top: 18px;
