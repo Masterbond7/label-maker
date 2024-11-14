@@ -94,17 +94,17 @@ while (made_pages < pages_needed) {
             continue; // Jump back to top of loop
         }
 
-        // If more sample blank labels are needed
-        if (made_sample_blanks < no_sample_blanks) {
-            page_contents += gen_sample_blank(label_date, label_time, label_analyst, label_grades);
-            made_sample_blanks++;
-            continue; // Jump back to top of loop
-        }
-
         // If more sample labels are needed
         if (made_samples < no_samples) {
             page_contents += gen_sample_label(label_date, label_time, label_analyst, label_grades, made_samples+1, starting_id+made_samples);
             made_samples++;
+            continue; // Jump back to top of loop
+        }
+
+        // If more sample blank labels are needed
+        if (made_sample_blanks < no_sample_blanks) {
+            page_contents += gen_sample_blank(label_date, label_time, label_analyst, label_grades);
+            made_sample_blanks++;
             continue; // Jump back to top of loop
         }
 
