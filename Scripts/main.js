@@ -42,7 +42,7 @@ function submit_form(event) {
         for (let i=0; i<strarr_missingIds.length; i++) {
             // If split string contains a number (just double checking), convert to int and add to intarr
             if (/[0-9]/.test(strarr_missingIds[i])) {
-                intarr_missingIds.push(parseInt((/[0-9]/.exec(strarr_missingIds[i])).join()));
+                intarr_missingIds.push(parseInt(strarr_missingIds[i].match(/[0-9]/g).join())); 
             }
         }
     }
