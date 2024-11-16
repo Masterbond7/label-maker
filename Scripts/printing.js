@@ -65,6 +65,9 @@ const missing_ids = localStorage.getItem("missing_ids");
 localStorage.removeItem("missing_ids");
 console.log(missing_ids);
 
+// Variable to keep track of IDs skipped due to missing IDs
+let ids_skipped = 0;
+
 // Handle NA month/year for label
 if (month=="NA") {month="__";}
 if (year=="NA") {year="____";}
@@ -101,7 +104,11 @@ while (made_pages < pages_needed) {
 
         // If more sample labels are needed
         if (made_samples < no_samples) {
-            page_contents += gen_sample_label(label_date, label_time, label_analyst, label_grades, made_samples+1, starting_id+made_samples);
+            // Check if ID for label needs to be skipped (missing from LIMS), if so, increment label ID by one and loop around again.
+            if (missing_ids.includes(starting_id+made_samples+ids_skipped)) {label_no--; ids_skipped++; continue;}
+
+            // Otherwise, generate label as normal
+            page_contents += gen_sample_label(label_date, label_time, label_analyst, label_grades, made_samples+1, starting_id+made_samples+ids_skipped);
             made_samples++;
             continue; // Jump back to top of loop
         }
