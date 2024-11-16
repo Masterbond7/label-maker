@@ -34,6 +34,21 @@ function submit_form(event) {
     let year = document.getElementById("labelYear").value;
     if (year=="") {year = "NA";}
 
+    // Check if any IDs are in Missing IDs box
+    let missingIds = document.getElementById("missingIds").value;
+    let intarr_missingIds = [];
+    if (/[0-9]/.test(missingIds)) { // If so, split and store in intarr
+        let strarr_missingIds = missingIds.split(/\r?\n|\r|\n/g);
+        for (let i=0; i<strarr_missingIds.length; i++) {
+            // If split string contains a number (just double checking), convert to int and add to intarr
+            if (/[0-9]/.test(strarr_missingIds[i])) {
+                intarr_missingIds.push(parseInt(strarr_missingIds[i]));
+            }
+        }
+    }
+    // save intarr of missingIds to localstorage
+    localStorage.setItem("missing_ids", intarr_missingIds);
+
     // Open printing window
     if (print) {
         window.open("./Pages/printing.html?startingID="+starting_id+"&noSamples="+num_samples+"&usedLabels="+used_labels+"&month="+month+"&year="+year+"&emptyLabels="+empty_labels+"&sampleBlanks="+sample_blanks);
