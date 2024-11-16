@@ -60,8 +60,9 @@ const has_template_labels = Boolean(parseInt(params.get("emptyLabels")));
 let month = params.get("month");
 let year = params.get("year");
 
-// Load "missing IDs" from localStorage
+// Load "missing IDs" from localStorage then clear
 const missing_ids = localStorage.getItem("missing_ids");
+localStorage.removeItem("missing_ids");
 console.log(missing_ids);
 
 // Handle NA month/year for label
