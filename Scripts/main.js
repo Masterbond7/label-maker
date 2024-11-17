@@ -54,10 +54,10 @@ function submit_form(event) {
     // if discrepency, check if missing_ids solves this issue
     if ((ending_id - starting_id)-intarr_missingIds.length+1 > num_samples) {
         print = false;
-        alert("Provided Sample ID range ("+starting_id+"-"+ending_id+") contains more IDs than the number of samples to be generated ("+num_samples+"), even after accounting for the "+intarr_missingIds.length+" skipped sample(s).\n\nMaybe try checking if LIMS skipped any more IDs while generating the project?");
+        alert("Provided Sample ID range ("+starting_id+"-"+ending_id+") contains more IDs("+((ending_id - starting_id)-intarr_missingIds.length+1)+") than the number of samples to be generated ("+num_samples+"), even after accounting for the "+intarr_missingIds.length+" skipped sample(s).\n\nMaybe try checking if LIMS skipped any more IDs while generating the project?");
     } else if ((ending_id - starting_id)-intarr_missingIds.length+1 < num_samples) {
         print = false;
-        alert("Provided Sample ID range ("+starting_id+"-"+ending_id+") contains less IDs than the number of samples to be generated ("+num_samples+"), this took into account the "+intarr_missingIds.length+" skipped sample(s).\n\nTry double checking the number of samples you want to generate, then the ID range for the samples, making sure no IDs were accidentally added to the 'skipped' samples box.");
+        alert("Provided Sample ID range ("+starting_id+"-"+ending_id+") contains less IDs("+((ending_id - starting_id)-intarr_missingIds.length+1)+") than the number of samples to be generated ("+num_samples+"), this took into account the "+intarr_missingIds.length+" skipped sample(s).\n\nTry double checking the number of samples you want to generate, then the ID range for the samples, making sure no IDs were accidentally added to the 'skipped' samples box.");
     }
 
     // Open printing window
