@@ -63,6 +63,8 @@ function submit_form(event) {
     // Open printing window
     if (print) {
         window.open("./Pages/printing.html?startingID="+starting_id+"&noSamples="+num_samples+"&usedLabels="+used_labels+"&month="+month+"&year="+year+"&emptyLabels="+empty_labels+"&sampleBlanks="+sample_blanks);
+    } else { // Cleanup anyway if not printing
+        localStorage.removeItem("missing_ids");
     }
 }
 
