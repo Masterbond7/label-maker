@@ -15,8 +15,10 @@
     <h1><i>Experimental</i> FM/SP label generator</h1>
 
     <form onsubmit="submit_form(event)">
-        <h3>Sample ID of first sample:</h3>
-        <input type="number" name="startingID" id="startingID", step="1">
+        <h3>Sample IDs of first & last sample:</h3>
+        <h4>The "Ending ID" box is optional, but recommended. This allows the program to quickly check to ensure LIMs hasn't obviously skipped over any IDs when generating the project. Leave blank if it's causing issues and you are sure things are set correctly.</h4>
+        <input type="number" name="startingID" id="startingID" placeholder="Starting ID" step="1">
+        <input type="number" name="endingID" id="endingID" placeholder="Ending ID" step="1">
 
         <h3>Number of samples: </h3>
         <input type="number" name="noSamples" id="noSamples" value="0" required>
@@ -31,7 +33,7 @@
 
         <br><br>
         <input type="checkbox" name="emptyLabels" id="emptyLabels">
-        <label for="emptyLabels">Fill unused labels at end of sheet with "spare" labels where Sifter No and Sample ID can be manually written.</label>
+        <label for="emptyLabels">Fill unused labels at end of sheet with "template" labels where Sifter No and Sample ID can be manually written.</label>
 
         <input type="submit" value="Make Labels!">
 
