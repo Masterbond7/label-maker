@@ -3,9 +3,9 @@ function gen_reagent_label(pictogram, comm_name, full_name, reagent_id_text, tim
     let label_contents = "";
     if (pictogram != "N/A") { // Pictogram
         label_contents = '<div class="label"><section style="width:80%;"><div class="reagent-label-content">\
-        <h2 class="label-text">'+comm_name+'</h2>\
-        <h5 class="label-text">'+full_name+'</h5>\
-        <h4 class="label-text">'+reagent_id_text+'</h4>\
+        <h2 class="label-text">'+comm_name+'</h2>';
+        if (full_name!="N/A") {label_contents+='<h5 class="label-text">'+full_name+'</h5>';}
+        label_contents+='<h4 class="label-text">'+reagent_id_text+'</h4>\
         <h4 class="label-text">'+time_text+'</h4>\
         <h4 class="label-text">'+date_text+'</h4>\
         <h4 class="label-text">'+creator_text+'</h4>\
@@ -14,9 +14,9 @@ function gen_reagent_label(pictogram, comm_name, full_name, reagent_id_text, tim
         label_contents+='</div></section><section style="width:20%;height:90%;display:flex;justify-content:center;align-items:center;"><img src="../Images/Hazards/'+pictogram+'" style="max-width:100%; max-height:100%;"></section></div>';
     } else { // No pictogram
         label_contents = '<div class="label"><section style="width:100%;"><div class="reagent-label-content">\
-        <h2 class="label-text">'+comm_name+'</h2>\
-        <h5 class="label-text">'+full_name+'</h5>\
-        <h4 class="label-text">'+reagent_id_text+'</h4>\
+        <h2 class="label-text">'+comm_name+'</h2>';
+        if (full_name!="N/A") {label_contents+='<h5 class="label-text">'+full_name+'</h5>';}
+        label_contents+='<h4 class="label-text">'+reagent_id_text+'</h4>\
         <h4 class="label-text">'+time_text+'</h4>\
         <h4 class="label-text">'+date_text+'</h4>\
         <h4 class="label-text">'+creator_text+'</h4>\
@@ -28,9 +28,11 @@ function gen_reagent_label(pictogram, comm_name, full_name, reagent_id_text, tim
 // Get params from URL
 const params = new URLSearchParams(location.search);
 const reagent = params.get("reagent");
+const label_type = params.get("label_type");
 
 // Text for labels
-const label_reagent_id = "Reagent ID: R___________";
+if (label_type=="chemical") {label_reagent_id = "Chemical ID: A__________";}
+else {label_reagent_id = "Reagent ID: R___________";}
 const label_time = "Time made: ____________";
 const label_date = "Date made: ____________";
 const label_creator = "Made by: ______________";
@@ -46,7 +48,20 @@ const pictogram_dict = {
     "extraction_solution": "extraction_solution.png",
     "glycerine_40": "N/A",
     "n_solvent": "n_solvent.png",
-    "naoh_0-02m": "naoh_solution.png"
+    "naoh_0-02m": "naoh_solution.png",
+
+    "nahco3":"",
+    "metaphosphoric_acid":"",
+    "glacial_acetic_acid":"",
+    "edta":"",
+    "ascorbic_acid":"",
+    "2_6_dcpip":"",
+    "diethyl_ether":"",
+    "ethanol":"",
+    "phenolpthalein":"",
+    "naoh_0-1m":"",
+    "ammonia_25":"",
+    "glycerine_100":""
 }
 const comm_name = {
     "ascorbic_solution": "Ascorbic Acid",
@@ -56,7 +71,20 @@ const comm_name = {
     "extraction_solution": "Extraction Solution",
     "glycerine_40": "40% Glycerine Solution",
     "n_solvent": "Neutralized Solvent",
-    "naoh_0-02m": "0.02M NaOH Solution"
+    "naoh_0-02m": "0.02M NaOH Solution",
+
+    "nahco3":"Sodium Hydrogen Carbonate",
+    "metaphosphoric_acid":"Metaphosphoric",
+    "glacial_acetic_acid":"Acetic Acid",
+    "edta":"EDTA",
+    "ascorbic_acid":"Ascorbic Acid",
+    "2_6_dcpip":"DCPIP dye (vit. c)",
+    "diethyl_ether":"Diethyl Ether",
+    "ethanol":"Ethanol",
+    "phenolpthalein":"Phenolpthalein",
+    "naoh_0-1m":"0.1M NaOH",
+    "ammonia_25":"Ammonia",
+    "glycerine_100":"Glycerine"
 };
 const full_name = {
     "ascorbic_solution": "L-Ascorbic Acid + Metaphosphoric Acid + Acetic acid + EDTA",
@@ -66,7 +94,20 @@ const full_name = {
     "extraction_solution": "Metaphosphoric Acid + Acetic acid + EDTA",
     "glycerine_40": "Glycerine",
     "n_solvent": "Diethyl ether + Ethanol + Phenolphthalein + NaOH",
-    "naoh_0-02m": "NaOH"
+    "naoh_0-02m": "NaOH",
+
+    "nahco3":"N/A",
+    "metaphosphoric_acid":"Metaphosphoric Acid",
+    "glacial_acetic_acid":"Glacial Acetic Acid",
+    "edta":"Ethylenediaminetetraacetic acid (di-sodium salt dihydrate)",
+    "ascorbic_acid":"N/A",
+    "2_6_dcpip":"2,6-dichlorophenolindophenol sodium salt",
+    "diethyl_ether":"N/A",
+    "ethanol":"N/A",
+    "phenolpthalein":"(for ffa)",
+    "naoh_0-1m":"N/A",
+    "ammonia_25":"25% ammonia",
+    "glycerine_100":"100% glycerine"
 };
 
 // Start a new page
