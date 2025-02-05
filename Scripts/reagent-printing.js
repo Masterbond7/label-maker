@@ -50,18 +50,18 @@ const pictogram_dict = {
     "n_solvent": "n_solvent.png",
     "naoh_0-02m": "naoh_solution.png",
 
-    "nahco3":"",
-    "metaphosphoric_acid":"",
-    "glacial_acetic_acid":"",
-    "edta":"",
-    "ascorbic_acid":"",
-    "2_6_dcpip":"",
-    "diethyl_ether":"",
-    "ethanol":"",
-    "phenolpthalein":"",
-    "naoh_0-1m":"",
-    "ammonia_25":"",
-    "glycerine_100":""
+    "nahco3":"N/A",
+    "metaphosphoric_acid":"metaphosphoric_acid.png",
+    "glacial_acetic_acid":"glacial_acetic_acid.png",
+    "edta":"edta.png",
+    "ascorbic_acid":"N/A",
+    "2_6_dcpip":"N/A",
+    "diethyl_ether":"diethyl_ether.png",
+    "ethanol":"ethanol.png",
+    "phenolpthalein":"phenolpthalein.png",
+    "naoh_0-1m":"naoh_0-1m.png",
+    "ammonia_25":"ammonia_25.png",
+    "glycerine_100":"N/A"
 }
 const comm_name = {
     "ascorbic_solution": "Ascorbic Acid",
