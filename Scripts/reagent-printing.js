@@ -78,7 +78,7 @@ const comm_name = {
     "glacial_acetic_acid":"Glacial Acetic Acid",
     "edta":"EDTA",
     "ascorbic_acid":"Ascorbic Acid",
-    "2_6_dcpip":"DCPIP dye (vit. c)",
+    "2_6_dcpip":"DCPIP dye (powder)",
     "diethyl_ether":"Diethyl Ether",
     "ethanol":"Ethanol",
     "phenolpthalein":"Phenolpthalein",
