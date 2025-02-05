@@ -1,6 +1,9 @@
 function label_time(type, reagent) { // :D
-    let num_labels = parseInt(document.getElementById("noLabels").value);
-    let used_labels = parseInt(document.getElementById("usedLabels").value);
+    if (document.getElementById("noLabels").value == '') { let num_labels = "1"; }
+    else { let num_labels = document.getElementById("noLabels").value; }
 
-    alert(type+" ("+reagent+")\n"+String(num_labels)+" "+String(used_labels));
+    if (document.getElementById("usedLabels").value == '') { let used_labels = "0"; }
+    else { let used_labels = document.getElementById("usedLabels").value; }
+
+    window.open("./reagent-printing.html?reagent="+reagent+"&label_type="+type+"&num_labels="+num_labels+"&used_labels="+used_labels);
 }
