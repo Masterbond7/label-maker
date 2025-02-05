@@ -6,6 +6,19 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
+html {
+    background-color: #EEEEEE;
+}
+
+div.label-container {
+    width:47.5%;
+    padding: 10px; 
+    border:2px black solid; 
+    margin: 10px; 
+    border-radius:25px;
+    background-color: #FFFFFF;
+}
+
 h3 {
     margin-bottom: 0;
 }
