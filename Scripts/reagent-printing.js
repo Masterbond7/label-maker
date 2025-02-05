@@ -1,4 +1,10 @@
 // Define function to generate empty label
+function gen_empty_label() {
+    let label_contents = '<div class="label"><div class="label-content"></div></div>';
+    return label_contents;
+}
+
+// Define function to generate empty label
 function gen_reagent_label(pictogram, comm_name, full_name, reagent_id_text, time_text, date_text, creator_text, expiry_text, mg_used_text, reagent) {
     let label_contents = "";
     if (pictogram != "N/A") { // Pictogram
@@ -29,6 +35,8 @@ function gen_reagent_label(pictogram, comm_name, full_name, reagent_id_text, tim
 const params = new URLSearchParams(location.search);
 const reagent = params.get("reagent");
 const label_type = params.get("label_type");
+const num_labels = parseInt(params.get("num_labels"));
+const used_labels = parseInt(params.get("used_labels"));
 
 // Text for labels
 if (label_type=="chemical") {label_reagent_id = "Chemical ID: A__________";}
@@ -110,14 +118,57 @@ const full_name = {
     "glycerine_100":"100% glycerine"
 };
 
+// Variables to keep track of labels made
+let made_pages = 0;
+let made_used_labels = 0;
+let made_labels = 0;
+
+// Calculate number of needed pages
+let total_labels = used_labels + num_labels;
+let pages_needed = Math.ceil(total_labels/18);
+
+// Make number of needed pages
+while (made_pages < pages_needed) {
+    // Start a new page
+    let page_contents = '<section class="labels">';
+
+    // Make 18 labels
+    for (let label_no=0; label_no<18; label_no++) {
+        // If more used labels are needed
+        if (made_used_labels < used_labels) {
+            page_contents += gen_empty_label();
+            made_used_labels++;
+            continue; // Jump back to top of loop
+        }
+
+        // If more reagent/chemical labels are needed
+        if (made_labels < num_labels) {
+            // Otherwise, generate label as normal
+            page_contents += gen_reagent_label(pictogram_dict[reagent], comm_name[reagent], full_name[reagent], label_reagent_id, label_time, label_date, label_creator, label_expiry, label_mg_used, reagent);
+            made_labels++;
+            continue; // Jump back to top of loop
+        }
+
+        // If this code has been reached no other labels are needed
+        // so generate empty labels.
+        page_contents += gen_empty_label();
+    }
+
+    // End page and add append to site
+    page_contents += '</section>';
+    document.getElementById('labels-here').innerHTML += page_contents;
+    made_pages++;
+}
+
+/*
 // Start a new page
 let page_contents = '<section class="labels">';
 
-// Make 18 labels
-for (let label_no=0; label_no<18; label_no++) {
+// Make x labels
+for (let label_no=0; label_no<num_labels; label_no++) {
     page_contents += gen_reagent_label(pictogram_dict[reagent], comm_name[reagent], full_name[reagent], label_reagent_id, label_time, label_date, label_creator, label_expiry, label_mg_used, reagent);
 }
 
 // End page and add append to site
 page_contents += '</section>';
-document.getElementById('labels-here').innerHTML += page_contents;
+document.getElementById('labels-here').innerHTML += page_contents;*/
