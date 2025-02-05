@@ -34,6 +34,11 @@ h3 {
     text-align: center;
 }
 
+h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 section.display-grid {
     display: flex;
     flex-wrap: wrap;
@@ -59,4 +64,14 @@ section.display-grid div h4 {
     border-top: 5px gray solid;
     border-radius: 0px 0px 5px 5px;
     background-color: lightgray;
+}
+
+div.hover-img img {
+    visibility: hidden;
+    position: absolute;
+    height: 50%;
+}
+
+div.hover-img:hover img {
+    visibility: visible;
 }
