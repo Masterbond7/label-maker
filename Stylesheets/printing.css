@@ -13,6 +13,11 @@ body {
     border: 0;
 }
 
+* {
+    /*font-family: 'Proximia Nova', Helvetica, Arial, sans-serif*/
+    font-family: 'Courier New', Courier, monospace;
+}
+
 .labels {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
