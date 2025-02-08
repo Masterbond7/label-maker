@@ -17,10 +17,10 @@
     <hr>
 
     <div style="display:flex;">
-        <div>
+        <div style="max-width: 75%">
             <form onsubmit="submit_form(event)" onchange="update_preview(event)">
                 <h3>Sample IDs of first & last sample:</h3>
-                <h4>The "Ending ID" box is optional, but recommended. This allows the program to quickly check to ensure LIMs hasn't obviously skipped over any IDs when generating the project. Leave blank if it's causing issues and you are sure things are set correctly.</h4>
+                <h4>The "Ending ID" box is optional, but recommended.<br>This allows the program to quickly check to ensure LIMs hasn't obviously skipped over any IDs when generating the project. Leave blank if it's causing issues and you are sure things are set correctly.</h4>
                 <input type="number" name="startingID" id="startingID" placeholder="Starting ID" step="1">
                 <input type="number" name="endingID" id="endingID" placeholder="Ending ID" step="1">
         
@@ -39,7 +39,7 @@
                 <input type="checkbox" name="emptyLabels" id="emptyLabels">
                 <label for="emptyLabels">Fill unused labels at end of sheet with "template" labels where Sifter No and Sample ID can be manually written.</label>
         
-                <input type="submit" value="Make Labels!">
+                <input type="submit" value="Make Labels!" style="background-color: #FFCCFF;font-size: 24px; font-weight: bold; border-radius: 25px; padding: 10px;">
         
                 <h3>Missing IDs</h3>
                 <h4>If LIMS missed any IDs while generating samples please enter them below, one ID per line please c:</h4>
@@ -52,25 +52,24 @@
                 <h3 class="partialSheetData">Number of used labels on sheet (or label# to start printing on):</h3>
                 <input type="number" name="usedLabels" id="usedLabels", min="0", max="17", step="1", value="0" class="partialSheetData" required>
                 <h2 class="partialSheetData">Example sheet with numbers for labels:</h2>
-                <img src="./Images/usedLabelsExample.png" alt="" srcset="" class="partialSheetData">
+                <img src="./Images/usedLabelsExample.png" alt="" srcset="" class="partialSheetData" style="max-width: 75%;">
             </form>
         </div>
         <div class="preview_a4"> <!--min-width???-->
-            <iframe id="preview_iframe" src="./Pages/printing.html" frameborder="0" width="100%" height="100%"></iframe>
+            <h4 style="text-align: center; margin: 0;">Preview window </h4>
+            <iframe onclick="gen_label_by_click()" id="preview_iframe" src="./Pages/printing.html?startingID=0&noSamples=0&usedLabels=0&month=NA&year=NA&emptyLabels=0&sampleBlanks=0" frameborder="0" width="400%" height="400%"></iframe>
         </div>
-        
-        <script>
-            const iframe = document.getElementById('preview_iframe');
-            iframe.onload = function() {
-                const iframeDoc = iframe.contentWindow.document;
-                
-                // Apply the scaling directly to the iframe's document
-                iframeDoc.body.style.transform = 'scale(0.7)'; // Adjust the scale value as needed
-                iframeDoc.body.style.transformOrigin = '0 0'; // Top-left corner scaling
-            };
-        </script>
     </div>
 
     <script src="./Scripts/main.js"></script>
+    <script src="./Scripts/iframe_scaling.js"></script>
+    <script>
+        update_preview(null);
+        const iframe = document.getElementById('preview_iframe');
+        iframe.onload = set_iframe_scale();
+        window.onload = set_iframe_scale();
+        window.onresize = set_iframe_scale();
+        window.addEventListener('resize', () => {set_iframe_scale();});
+    </script>
 </body>
 </html>

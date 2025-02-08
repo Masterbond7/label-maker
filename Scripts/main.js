@@ -3,24 +3,25 @@ function submit_form(event) {
     // Stop page from refreshing
     event.preventDefault();
 
-    let result = get_form_data(event);
+    let result = get_form_data(2);
 
     if (result!="N/A") {window.open(result);}
 }
 
 // On form update, update preview
-function update_preview(event) {
+function update_preview() {
     // Stop page from refreshing
-    event.preventDefault();
+    //event.preventDefault();
 
-    let result = get_form_data(event);
+    let result = get_form_data(1);
     if (result!="N/A") {document.getElementById("preview_iframe").setAttribute('src', result)}
+
+    //setTimeout(set_iframe_scale(),1000);
 }
 
 // Function gets and returns form data
-function get_form_data(event) {
+function get_form_data(silent) {
     // Stop page from refreshing
-    event.preventDefault();
 
     // Get form data
     let starting_id = parseInt(document.getElementById("startingID").value);
@@ -47,7 +48,8 @@ function get_form_data(event) {
     
     let print = true;
     if (num_leftover > 0 && empty_labels == 1) { // Leftover labels being turned into "spare" labels
-        print = confirm("If you continue, "+num_leftover+" \"spare\" label(s) will be generated, are you sure?");
+        if(silent>1){print = confirm("If you continue, "+num_leftover+" \"spare\" label(s) will be generated, are you sure?");}
+        else {print=true}
     }
 
     let month = document.getElementById("labelMonth").value;
@@ -74,10 +76,10 @@ function get_form_data(event) {
     // if discrepency, check if missing_ids solves this issue
     if ((ending_id - starting_id)-intarr_missingIds.length+1 > num_samples) {
         print = false;
-        alert("Provided Sample ID range ("+starting_id+"-"+ending_id+") contains more IDs("+((ending_id - starting_id)-intarr_missingIds.length+1)+") than the number of samples to be generated ("+num_samples+"), even after accounting for the "+intarr_missingIds.length+" skipped sample(s).\n\nMaybe try checking if LIMS skipped any more IDs while generating the project?");
+        if(silent>0){alert("Provided Sample ID range ("+starting_id+"-"+ending_id+") contains more IDs("+((ending_id - starting_id)-intarr_missingIds.length+1)+") than the number of samples to be generated ("+num_samples+"), even after accounting for the "+intarr_missingIds.length+" skipped sample(s).\n\nMaybe try checking if LIMS skipped any more IDs while generating the project?");}
     } else if ((ending_id - starting_id)-intarr_missingIds.length+1 < num_samples) {
         print = false;
-        alert("Provided Sample ID range ("+starting_id+"-"+ending_id+") contains less IDs("+((ending_id - starting_id)-intarr_missingIds.length+1)+") than the number of samples to be generated ("+num_samples+"), this took into account the "+intarr_missingIds.length+" skipped sample(s).\n\nTry double checking the number of samples you want to generate, then the ID range for the samples, making sure no IDs were accidentally added to the 'skipped' samples box.");
+        if(silent>0){alert("Provided Sample ID range ("+starting_id+"-"+ending_id+") contains less IDs("+((ending_id - starting_id)-intarr_missingIds.length+1)+") than the number of samples to be generated ("+num_samples+"), this took into account the "+intarr_missingIds.length+" skipped sample(s).\n\nTry double checking the number of samples you want to generate, then the ID range for the samples, making sure no IDs were accidentally added to the 'skipped' samples box.");}
     }
 
     // Open printing window
@@ -89,6 +91,32 @@ function get_form_data(event) {
 
     // If here something has gone wrong, return N/A
     return "N/A"
+}
+
+// Function that is called when partialSheet checkbox is toggled
+function partial_sheet_checkbox() {
+    var effected_elements = document.getElementsByClassName("partialSheetData");
+    console.log(effected_elements);
+
+    // Partial sheet being used
+    if (document.getElementById('partialSheet').checked) {
+        document.getElementById('usedLabels').disabled=false;
+        
+        for (let i=0; i<effected_elements.length; i++) {
+            effected_elements[i].style.visibility="visible";
+            console.log(effected_elements[i].style.visibility);
+        }
+    } 
+
+    // Full sheet being used
+    else {
+        document.getElementById('usedLabels').disabled=true;
+        
+        for (let i=0; i<effected_elements.length; i++) {
+            effected_elements[i].style.visibility="hidden";
+            console.log(effected_elements[i].style.visibility);
+        }
+    }
 }
 
 // Run init
