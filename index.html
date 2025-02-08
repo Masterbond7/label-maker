@@ -66,9 +66,9 @@
     <script>
         update_preview(null);
         const iframe = document.getElementById('preview_iframe');
-        iframe.onload = set_iframe_scale();
+        //iframe.onload = set_iframe_scale();
         window.onload = set_iframe_scale();
-        window.onresize = set_iframe_scale();
+        //window.onresize = set_iframe_scale();
         window.addEventListener('resize', () => {set_iframe_scale();});
     </script>
 </body>

@@ -18,11 +18,11 @@ function set_iframe_scale() {
 
     const scaleFactor = iframe_width / content_width;
 
-    const iframe_content = iframe.contentWindow.document;
+    //const iframe_content = iframe.contentWindow.document;
     iframe.style.transform = "scale("+scaleFactor+")";
     iframe.style.transformOrigin = "top left";
     iframe.style.width=(100/scaleFactor)+"%";
     iframe.style.height=(100/scaleFactor)+"%";
-    console.log(iframe_content.body.style.transform);
+    //console.log(iframe_content.body.style.transform);
     //alert('a');
 }
