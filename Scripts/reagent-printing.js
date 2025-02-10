@@ -57,6 +57,7 @@ const pictogram_dict = {
     "glycerine_40": "N/A",
     "n_solvent": "n_solvent.png",
     "naoh_0-02m": "naoh_solution.png",
+    "ammonia_5m": "ammonia_5m.png",
 
     "nahco3":"N/A",
     "metaphosphoric_acid":"metaphosphoric_acid.png",
@@ -80,6 +81,7 @@ const comm_name = {
     "glycerine_40": "40% Glycerine Solution",
     "n_solvent": "Neutralized Solvent",
     "naoh_0-02m": "0.02M NaOH Solution",
+    "ammonia_5m": "5M Ammonia Solution",
 
     "nahco3":"Sodium Hydrogen Carbonate",
     "metaphosphoric_acid":"Metaphosphoric Acid",
@@ -103,6 +105,7 @@ const full_name = {
     "glycerine_40": "Glycerine",
     "n_solvent": "Diethyl ether + Ethanol + Phenolphthalein + NaOH",
     "naoh_0-02m": "NaOH",
+    "ammonia_5m": "N/A",
 
     "nahco3":"N/A",
     "metaphosphoric_acid":"N/A",
