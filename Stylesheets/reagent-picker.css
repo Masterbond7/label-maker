@@ -71,6 +71,7 @@ section.display-grid div div {
     border-top: 5px #6D6E71 solid;
     border-radius: 0px 0px 5px 5px;
     display: flex;
+    background-color: #C6C8CA;
 }
 
 div.hover-img img {
