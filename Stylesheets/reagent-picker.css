@@ -75,7 +75,8 @@ section.display-grid div div {
 }
 
 section.display-grid div div h5 {
-    margin: 0;
+    padding: 0;
+    margin: auto 0 auto 0;
 }
 
 div.hover-img img {
