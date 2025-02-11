@@ -14,43 +14,62 @@
   
     <h1><i>Experimental</i> FM/SP label generator</h1>
 
-    <form onsubmit="submit_form(event)">
-        <h3>Sample IDs of first & last sample:</h3>
-        <h4>The "Ending ID" box is optional, but recommended. This allows the program to quickly check to ensure LIMs hasn't obviously skipped over any IDs when generating the project. Leave blank if it's causing issues and you are sure things are set correctly.</h4>
-        <input type="number" name="startingID" id="startingID" placeholder="Starting ID" step="1">
-        <input type="number" name="endingID" id="endingID" placeholder="Ending ID" step="1">
+    <hr>
 
-        <h3>Number of samples: </h3>
-        <input type="number" name="noSamples" id="noSamples" value="0" required>
+    <div style="display:flex;">
+        <div style="max-width: 75%">
+            <form onsubmit="submit_form(event)" onchange="update_preview(event)">
+                <h3>Sample IDs of first & last sample:</h3>
+                <h4>The "Ending ID" box is optional, but recommended.<br>This allows the program to quickly check to ensure LIMs hasn't obviously skipped over any IDs when generating the project. Leave blank if it's causing issues and you are sure things are set correctly.</h4>
+                <input type="number" name="startingID" id="startingID" placeholder="Starting ID" step="1">
+                <input type="number" name="endingID" id="endingID" placeholder="Ending ID" step="1">
         
-        <h3>Month and year to put on labels: </h3>
-        <h4>If the campaign may run between months/years then leave the respective fields blank and they will show as __ in the final labels</h4>
-        <input type="number" name="labelMonth" id="labelMonth" placeholder="Month", min="1", max="12", step="1" style="width:100px">
-        <input type="number" name="labelYear" id="labelYear" placeholder="Year", step="1" size="20" style="width:100px">
-
-        <h3>Number of 'sample blank' labels to generate: </h3>
-        <input type="number" name="sampleBlanks" id="sampleBlanks" min="0" step="1" value="0" required>
-
-        <br><br>
-        <input type="checkbox" name="emptyLabels" id="emptyLabels">
-        <label for="emptyLabels">Fill unused labels at end of sheet with "template" labels where Sifter No and Sample ID can be manually written.</label>
-
-        <input type="submit" value="Make Labels!">
-
-        <h3>Missing IDs</h3>
-        <h4>If LIMS missed any IDs while generating samples please enter them below, one ID per line please c:</h4>
-        <textarea name="missingIds" id="missingIds" rows="5" cols="10"></textarea>
-
-	    <br><br>
-        <input type="checkbox" name="partialSheet" id="partialSheet" onchange="partial_sheet_checkbox()">
-        <label for="partialSheet">I have a half-used sheet of lables as the first sheet to be used by the printer</label>
-
-        <h3 class="partialSheetData">Number of used labels on sheet (or label# to start printing on):</h3>
-        <input type="number" name="usedLabels" id="usedLabels", min="0", max="17", step="1", value="0" class="partialSheetData" required>
-        <h2 class="partialSheetData">Example sheet with numbers for labels:</h2>
-        <img src="./Images/usedLabelsExample.png" alt="" srcset="" class="partialSheetData">
-    </form>
+                <h3>Number of samples: </h3>
+                <input type="number" name="noSamples" id="noSamples" value="0" required>
+                
+                <h3>Month and year to put on labels: </h3>
+                <h4>If the campaign may run between months/years then leave the respective fields blank and they will show as __ in the final labels</h4>
+                <input type="number" name="labelMonth" id="labelMonth" placeholder="Month", min="1", max="12", step="1" style="width:100px">
+                <input type="number" name="labelYear" id="labelYear" placeholder="Year", step="1" size="20" style="width:100px">
+        
+                <h3>Number of 'sample blank' labels to generate: </h3>
+                <input type="number" name="sampleBlanks" id="sampleBlanks" min="0" step="1" value="0" required>
+        
+                <br><br>
+                <input type="checkbox" name="emptyLabels" id="emptyLabels">
+                <label for="emptyLabels">Fill unused labels at end of sheet with "template" labels where Sifter No and Sample ID can be manually written.</label>
+        
+                <input type="submit" value="Make Labels!" style="background-color: #FFCCFF;font-size: 24px; font-weight: bold; border-radius: 25px; padding: 10px;">
+        
+                <h3>Missing IDs</h3>
+                <h4>If LIMS missed any IDs while generating samples please enter them below, one ID per line please c:</h4>
+                <textarea name="missingIds" id="missingIds" rows="5" cols="10"></textarea>
+        
+                <br><br>
+                <input type="checkbox" name="partialSheet" id="partialSheet" onchange="partial_sheet_checkbox()">
+                <label for="partialSheet">I have a half-used sheet of lables as the first sheet to be used by the printer</label>
+        
+                <h3 class="partialSheetData">Number of used labels on sheet (or label# to start printing on):</h3>
+                <input type="number" name="usedLabels" id="usedLabels", min="0", max="17", step="1", value="0" class="partialSheetData" required>
+                <h2 class="partialSheetData">Example sheet with numbers for labels:</h2>
+                <img src="./Images/usedLabelsExample.png" alt="" srcset="" class="partialSheetData" style="max-width: 75%;">
+            </form>
+        </div>
+        <div class="preview_a4"> <!--min-width???-->
+            <h4 style="text-align: center; margin: 0;">Preview window </h4>
+            <iframe onclick="gen_label_by_click()" id="preview_iframe" src="./Pages/printing.html?startingID=0&noSamples=0&usedLabels=0&month=NA&year=NA&emptyLabels=0&sampleBlanks=0" frameborder="0" width="400%" height="400%"></iframe>
+        </div>
+    </div>
 
     <script src="./Scripts/main.js"></script>
+    <script src="./Scripts/iframe_scaling.js"></script>
+    <script>
+        update_preview(null);
+        const iframe = document.getElementById('preview_iframe');
+        //iframe.onload = set_iframe_scale();
+        window.onload = set_iframe_scale();
+        //window.onresize = set_iframe_scale();
+        window.addEventListener('resize', () => {set_iframe_scale();});
+    </script>
 </body>
 </html>

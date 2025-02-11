@@ -3,7 +3,12 @@
 }
 
 * {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Proximia Nova', Helvetica, Arial, sans-serif
+    /*font-family: 'Courier New', Courier, monospace;*/
+}
+
+html {
+    background-color: #E6E7E8;
 }
 
 a {
@@ -23,4 +28,17 @@ form h3 {
 form h4 {
     font-size: 12px;
     margin: 0;
+}
+
+div.preview_a4 {
+    margin-left: auto; 
+    margin-right: 0; 
+    
+    min-width: 25%; 
+    max-width: 25%; 
+    min-height: calc(25vw*1.414); 
+    max-height: calc(25vw*1.414); 
+    
+    position: sticky; 
+    top: 8px;
 }
