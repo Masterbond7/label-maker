@@ -6,6 +6,8 @@ function gen_empty_label() {
 
 // Define function to generate empty label
 function gen_reagent_label(pictogram, comm_name, full_name, reagent_id_text, time_text, date_text, creator_text, expiry_text, mg_used_text, reagent) {
+    
+    
     let label_contents = "";
     if (pictogram != "N/A") { // Pictogram
         label_contents = '<div class="label"><section style="width:80%;"><div class="reagent-label-content">\
@@ -39,13 +41,23 @@ const num_labels = parseInt(params.get("num_labels"));
 const used_labels = parseInt(params.get("used_labels"));
 
 // Text for labels
+let label_reagent_id = "";
 if (label_type=="chemical") {label_reagent_id = "Chemical ID: A__________";}
 else {label_reagent_id = "Reagent ID: R___________";}
-const label_time = "Time made: ____________";
-const label_date = "Date made: ____________";
-const label_creator = "Made by: ______________";
-const label_expiry = "Expires: _______________";
-const label_mg_used = "mg used: ______________";
+
+let label_time = "";
+if (label_type=="chemical") {label_time="Date received: __________";}
+else {label_time="Time made: ____________";}
+
+let label_date = "";
+if (label_type=="chemical") {label_date="Date opened: ___________";}
+else {label_date = "Date made: ____________";}
+
+let label_creator = "";
+if (label_type=="chemical") {label_creator="Opened by: ____________";}
+else {label_creator = "Made by: ______________";}
+const label_expiry     = "Expires: _______________";
+const label_mg_used    = "mg used: ______________";
 
 // Reagent dictionary
 const pictogram_dict = {
