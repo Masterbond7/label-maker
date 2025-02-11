@@ -56,6 +56,7 @@ else {label_date = "Date made: ____________";}
 let label_creator = "";
 if (label_type=="chemical") {label_creator="Opened by: ____________";}
 else {label_creator = "Made by: ______________";}
+
 const label_expiry     = "Expires: _______________";
 const label_mg_used    = "mg used: ______________";
 
