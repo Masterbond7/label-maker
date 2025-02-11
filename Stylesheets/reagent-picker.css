@@ -74,6 +74,10 @@ section.display-grid div div {
     background-color: #C6C8CA;
 }
 
+section.display-grid div div h5 {
+    margin: 0;
+}
+
 div.hover-img img {
     visibility: hidden;
     position: absolute;
