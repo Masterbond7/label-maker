@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../Stylesheets/main.css">
+    <link rel="stylesheet" href="../Stylesheets/printing.css">
+    <style>
+        h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 96px;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body id="labels-here">
+    <script>
+        // Define function to generate empty label
+        function gen_empty_label() {
+            let label_contents = '<div class="label"><div class="label-content"></div></div>';
+            return label_contents;
+        }
+
+        // Define function to generate page label
+        function gen_page_label(page_no) {
+            let label_contents = '<div class="label"><div class="label-content">\
+                <h1 class="label-text">'+page_no+'</h1>\
+                </div></div>';
+            return label_contents;
+        }
+
+        const params = new URLSearchParams(location.search);
+        const labels_needed=parseInt(params.get("noLabels"));
+
+        let pages_needed = Math.ceil(labels_needed/18);
+        let labels_made = 0;
+        let pages_made = 0;
+
+        while (pages_made<pages_needed) {
+            // Start a new page
+            let page_contents = '<section class="labels">';
+
+            // Fill page with labels
+            for (let label_no=0; label_no<18; label_no++) {
+                // If page number label needed
+                if (labels_made<labels_needed) {
+                    page_contents+=gen_page_label(labels_made+1);
+                    labels_made++;
+                }
+
+                // Otherwise make blank label
+                else {
+                    page_contents+=gen_empty_label();
+                }
+            }
+
+            // End page and add append to site
+            page_contents += '</section>';
+            document.getElementById('labels-here').innerHTML += page_contents;
+            pages_made++;
+        }
+    </script>
+</body>
+</html>

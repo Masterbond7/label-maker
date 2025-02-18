@@ -129,8 +129,5 @@ while (made_pages < pages_needed) {
         }
     }
 
-    // End page and add append to site
-    page_contents += '</section>';
-    document.getElementById('labels-here').innerHTML += page_contents;
-    made_pages++;
+    
 }
