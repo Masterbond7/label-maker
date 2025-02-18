@@ -8,7 +8,7 @@
 }
 
 html {
-    background-color: #EEEEEE;
+    background-color: #E6E7E8;
 }
 
 div.label-container {
@@ -47,8 +47,8 @@ section.display-grid {
     justify-content: center;
 }
 
-section.display-grid div {
-    border: 5px gray solid;
+section.display-grid div.individual_label {
+    border: 5px #6D6E71 solid;
     border-radius: 10px;
     width: fit-content;
     height: auto;
@@ -62,9 +62,21 @@ section.display-grid div img {
 section.display-grid div h4 {
     text-align: center;
     margin: 0;
-    border-top: 5px gray solid;
+    border-top: 5px #6D6E71 solid;
+    background-color: #C6C8CA;
+}
+
+section.display-grid div div {
+    justify-content: center;
+    border-top: 5px #6D6E71 solid;
     border-radius: 0px 0px 5px 5px;
-    background-color: lightgray;
+    display: flex;
+    background-color: #C6C8CA;
+}
+
+section.display-grid div div h5 {
+    padding: 0;
+    margin: auto 0 auto 0;
 }
 
 div.hover-img img {

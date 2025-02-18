@@ -42,17 +42,24 @@
             <h2>Chemical labels</h2>
             <h3>Vitamin C chemicals</h3>
             <section class="display-grid">
-                <div><a href="#" onclick="label_time('chemical', 'nahco3'); return false;"><img src="../Images/LabelExamples/nahco3.png"  width="180px" height="120px"><br>
-                    <h4>NaHCO3</h4></a></div>
-                <div><a href="#" onclick="label_time('chemical', 'metaphosphoric_acid'); return false;"><img src="../Images/LabelExamples/metaphosphoric_acid.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('chemical', 'nahco3'); return false;"><img src="../Images/LabelExamples/nahco3.png"  width="180px" height="120px"><br>
+                    <h4>NaHCO3</h4></a>
+                    <!--<div><h5># of labels: </h5>
+                    <input type="number" id="nahco3-labels", min="0", max="18000", step="1", value="0"></div>--></div>
+
+                <div class="individual_label"><a href="#" onclick="label_time('chemical', 'metaphosphoric_acid'); return false;"><img src="../Images/LabelExamples/metaphosphoric_acid.png"  width="180px" height="120px"><br>
                     <h4>Metaphosphoric Acid</h4></a></div>
-                <div><a href="#" onclick="label_time('chemical', 'glacial_acetic_acid'); return false;"><img src="../Images/LabelExamples/glacial_acetic_acid.png"  width="180px" height="120px"><br>
+
+                <div class="individual_label"><a href="#" onclick="label_time('chemical', 'glacial_acetic_acid'); return false;"><img src="../Images/LabelExamples/glacial_acetic_acid.png"  width="180px" height="120px"><br>
                     <h4>Glacial Acetic Acid</h4></a></div>
-                <div><a href="#" onclick="label_time('chemical', 'edta'); return false;"><img src="../Images/LabelExamples/edta.png"  width="180px" height="120px"><br>
+
+                <div class="individual_label"><a href="#" onclick="label_time('chemical', 'edta'); return false;"><img src="../Images/LabelExamples/edta.png"  width="180px" height="120px"><br>
                     <h4>EDTA</h4></a></div>
-                <div><a href="#" onclick="label_time('chemical', 'ascorbic_acid'); return false;"><img src="../Images/LabelExamples/ascorbic_acid.png"  width="180px" height="120px"><br>
+
+                <div class="individual_label"><a href="#" onclick="label_time('chemical', 'ascorbic_acid'); return false;"><img src="../Images/LabelExamples/ascorbic_acid.png"  width="180px" height="120px"><br>
                     <h4>Ascorbic Acid</h4></a></div>
-                <div><a href="#" onclick="label_time('chemical', '2_6_dcpip'); return false;"><img src="../Images/LabelExamples/2_6_dcpip.png"  width="180px" height="120px"><br>
+
+                <div class="individual_label"><a href="#" onclick="label_time('chemical', '2_6_dcpip'); return false;"><img src="../Images/LabelExamples/2_6_dcpip.png"  width="180px" height="120px"><br>
                     <h4>2,6-DCPIP</h4></a></div>
             </section>
 
@@ -60,13 +67,13 @@
 
             <h3>FFA chemicals</h3>
             <section class="display-grid">
-                <div><a href="#" onclick="label_time('chemical', 'diethyl_ether'); return false;"><img src="../Images/LabelExamples/diethyl_ether.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('chemical', 'diethyl_ether'); return false;"><img src="../Images/LabelExamples/diethyl_ether.png"  width="180px" height="120px"><br>
                     <h4>Diethyl ether</h4></a></div>
-                <div><a href="#" onclick="label_time('chemical', 'ethanol'); return false;"><img src="../Images/LabelExamples/ethanol.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('chemical', 'ethanol'); return false;"><img src="../Images/LabelExamples/ethanol.png"  width="180px" height="120px"><br>
                     <h4>Ethanol</h4></a></div>
-                <div><a href="#" onclick="label_time('chemical', 'phenolpthalein'); return false;"><img src="../Images/LabelExamples/phenolpthalein.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('chemical', 'phenolpthalein'); return false;"><img src="../Images/LabelExamples/phenolpthalein.png"  width="180px" height="120px"><br>
                     <h4>Phenolpthalein</h4></a></div>
-                <div><a href="#" onclick="label_time('chemical', 'naoh_0-1m'); return false;"><img src="../Images/LabelExamples/naoh_0-1m.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('chemical', 'naoh_0-1m'); return false;"><img src="../Images/LabelExamples/naoh_0-1m.png"  width="180px" height="120px"><br>
                     <h4>0.1M NaOH</h4></a></div>
             </section>
 
@@ -74,9 +81,9 @@
 
             <h3>Homoefficiency chemicals</h3>
             <section class="display-grid">
-                <div><a href="#" onclick="label_time('chemical', 'ammonia_25'); return false;"><img src="../Images/LabelExamples/ammonia_25.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('chemical', 'ammonia_25'); return false;"><img src="../Images/LabelExamples/ammonia_25.png"  width="180px" height="120px"><br>
                     <h4>Ammonia 25%</h4></a></div>
-                <div><a href="#" onclick="label_time('chemical', 'glycerine_100'); return false;"><img src="../Images/LabelExamples/glycerine_100.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('chemical', 'glycerine_100'); return false;"><img src="../Images/LabelExamples/glycerine_100.png"  width="180px" height="120px"><br>
                     <h4>Glycerine</h4></a></div>
             </section>
         </div>
@@ -87,15 +94,15 @@
             <h2>Reagent labels</h2>
             <h3>Vitamin C reagents</h3>
             <section class="display-grid">
-                <div><a href="#" onclick="label_time('reagent', 'dpip_dye'); return false;"><img src="../Images/LabelExamples/dpip_dye.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('reagent', 'dpip_dye'); return false;"><img src="../Images/LabelExamples/dpip_dye.png"  width="180px" height="120px"><br>
                     <h4>DPIP dye</h4></a></div>
-                <div><a href="#" onclick="label_time('reagent', 'chelating_solution'); return false;"><img src="../Images/LabelExamples/chelating_solution.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('reagent', 'chelating_solution'); return false;"><img src="../Images/LabelExamples/chelating_solution.png"  width="180px" height="120px"><br>
                     <h4>Chelating Solution</h4></a></div>
-                <div><a href="#" onclick="label_time('reagent', 'precipitation_solution'); return false;"><img src="../Images/LabelExamples/precipitation_solution.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('reagent', 'precipitation_solution'); return false;"><img src="../Images/LabelExamples/precipitation_solution.png"  width="180px" height="120px"><br>
                     <h4>Precipitation Sol.</h4></a></div>
-                <div><a href="#" onclick="label_time('reagent', 'extraction_solution'); return false;"><img src="../Images/LabelExamples/extraction_solution.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('reagent', 'extraction_solution'); return false;"><img src="../Images/LabelExamples/extraction_solution.png"  width="180px" height="120px"><br>
                     <h4>Extraction Sol.</h4></a></div>
-                <div><a href="#" onclick="label_time('reagent', 'ascorbic_solution'); return false;"><img src="../Images/LabelExamples/ascorbic_solution.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('reagent', 'ascorbic_solution'); return false;"><img src="../Images/LabelExamples/ascorbic_solution.png"  width="180px" height="120px"><br>
                     <h4>Ascorbic acid</h4></a></div>
             </section>
 
@@ -103,18 +110,20 @@
 
             <h3>FFA reagents</h3>
             <section class="display-grid">
-                <div><a href="#" onclick="label_time('reagent', 'naoh_0-02m'); return false;"><img src="../Images/LabelExamples/naoh_0-02m.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('reagent', 'naoh_0-02m'); return false;"><img src="../Images/LabelExamples/naoh_0-02m.png"  width="180px" height="120px"><br>
                     <h4>0.02M NaOH Solution</h4></a></div>
-                <div><a href="#" onclick="label_time('reagent', 'n_solvent'); return false;"><img src="../Images/LabelExamples/n_solvent.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('reagent', 'n_solvent'); return false;"><img src="../Images/LabelExamples/n_solvent.png"  width="180px" height="120px"><br>
                     <h4>Neutralized Solv.</h4></a></div>
             </section>
 
             <hr>
 
-            <h3>Miscellaneous reagents</h3>
+            <h3>Homoefficiency reagents</h3>
             <section class="display-grid">
-                <div><a href="#" onclick="label_time('reagent', 'glycerine_40'); return false;"><img src="../Images/LabelExamples/glycerine_40.png"  width="180px" height="120px"><br>
+                <div class="individual_label"><a href="#" onclick="label_time('reagent', 'glycerine_40'); return false;"><img src="../Images/LabelExamples/glycerine_40.png"  width="180px" height="120px"><br>
                     <h4>40% Glycerine</h4></a></div>
+                <div class="individual_label"><a href="#" onclick="label_time('reagent', 'ammonia_5m'); return false;"><img src="../Images/LabelExamples/ammonia_5m.png"  width="180px" height="120px"><br>
+                    <h4>5M Ammonia</h4></a></div>
             </section>
         </div>
     </div>
