@@ -4,6 +4,19 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../Stylesheets/main.css">
         <link rel="stylesheet" href="../Stylesheets/printing.css">
+        <style>
+            @media print{
+                section.textarea {
+                    border: 0;
+                }
+            }
+
+            @media screen{
+                section.textarea {
+                    border: 2px dotted grey;
+                }
+            }
+        </style>
     </head>
     <body id="labels-here">
         <!-- The labels get made here -->
@@ -13,8 +26,8 @@
 
             // Make 18 labels
             for (let label_no=0; label_no<18; label_no++) {
-                page_contents += '<div class="label"><div class="label-content">\
-                    <textarea style="width:100%;height:100%;font-size:11pt"></textarea></div></div>';
+                page_contents += '<div class="label"><div class="label-content" style="width:100%; height:95%">\
+                    <section contenteditable="true" class="textarea" style="display:flex;width: 100%; height: 100%; font-size: 14pt;background-color:transparent; resize:none; box-sizing:border-box;justify-content:center;align-items:center"></section></div></div>';
             }
 
             // End page and add append to site
