@@ -5,21 +5,20 @@ function gen_empty_label() {
 }
 
 // Define function to generate sample blank label
-function gen_sample_blank(date_text, time_text, analyst_text, grades_text) {
+function gen_sample_blank(date_text, time_text, analyst_text) {
     let label_contents = '<div class="label"><div class="label-content">\
     <h3 class="label-text">Sample: Blank</h3>\
     <h3 class="label-text">'+date_text+'</h3>\
     <h3 class="label-text">'+time_text+'</h3>\
-    <h3 class="label-text">'+analyst_text+'</h3>\
-    <h3 class="label-text">'+grades_text+'</h3></div></div>';
+    <h3 class="label-text">'+analyst_text+'</h3></div></div>';
     return label_contents;
 }
 
 // Define function to generate sample label
-function gen_sample_label(date_text, time_text, analyst_text, grades_text, sifter_no, sample_no) {
+function gen_sample_label(date_text, time_text, analyst_text, sifter_no, sample_no) {
     // If Sample ID is blank/NaN, generate template labels instead
     if (isNaN(sample_no)) {
-        return gen_template_label(date_text, time_text, analyst_text, grades_text);
+        return gen_template_label(date_text, time_text, analyst_text);
     }
 
     // Otherwise make sample label normally
@@ -31,20 +30,18 @@ function gen_sample_label(date_text, time_text, analyst_text, grades_text, sifte
     <h3 class="label-text">'+label_sampleID+'</h3>\
     <h3 class="label-text">'+date_text+'</h3>\
     <h3 class="label-text">'+time_text+'</h3>\
-    <h3 class="label-text">'+analyst_text+'</h3>\
-    <h3 class="label-text">'+grades_text+'</h3></div></div>';
+    <h3 class="label-text">'+analyst_text+'</h3></div></div>';
     return label_contents;
 }
 
 // Define function to generate template label
-function gen_template_label(date_text, time_text, analyst_text, grades_text) {
+function gen_template_label(date_text, time_text, analyst_text) {
     let label_contents = '<div class="label"><div class="label-content">\
     <h3 class="label-text">Sifter #___</h3>\
     <h3 class="label-text">Sample ID: __________</h3>\
     <h3 class="label-text">'+date_text+'</h3>\
     <h3 class="label-text">'+time_text+'</h3>\
-    <h3 class="label-text">'+analyst_text+'</h3>\
-    <h3 class="label-text">'+grades_text+'</h3></div></div>';
+    <h3 class="label-text">'+analyst_text+'</h3></div></div>';
     return label_contents;
 }
 
@@ -75,7 +72,6 @@ if (year=="NA") {year="____";}
 // Text for labels
 const label_time = "Time: __:__";
 const label_analyst = "Analyst: ";
-const label_grades = "FM Grade: ☐1 ☐2 ☐3 ☐4<br>SP Grade: ☐A ☐B ☐C ☐D"
 const label_date = "Date: __/"+month+"/"+year;
 
 // Variables to keep track of labels made
@@ -108,14 +104,14 @@ while (made_pages < pages_needed) {
             if (missing_ids.includes(starting_id+made_samples+ids_skipped)) {label_no--; ids_skipped++; continue;}
 
             // Otherwise, generate label as normal
-            page_contents += gen_sample_label(label_date, label_time, label_analyst, label_grades, made_samples+1, starting_id+made_samples+ids_skipped);
+            page_contents += gen_sample_label(label_date, label_time, label_analyst, made_samples+1, starting_id+made_samples+ids_skipped);
             made_samples++;
             continue; // Jump back to top of loop
         }
 
         // If more sample blank labels are needed
         if (made_sample_blanks < no_sample_blanks) {
-            page_contents += gen_sample_blank(label_date, label_time, label_analyst, label_grades);
+            page_contents += gen_sample_blank(label_date, label_time, label_analyst);
             made_sample_blanks++;
             continue; // Jump back to top of loop
         }
@@ -123,7 +119,7 @@ while (made_pages < pages_needed) {
         // If this code has been reached no other labels are needed
         // so generate empty/template labels depending on request
         if (has_template_labels) {
-            page_contents += gen_template_label(label_date, label_time, label_analyst, label_grades);
+            page_contents += gen_template_label(label_date, label_time, label_analyst);
         } else {
             page_contents += gen_empty_label();
         }
